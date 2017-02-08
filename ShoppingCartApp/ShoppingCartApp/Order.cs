@@ -13,7 +13,7 @@ namespace ShoppingCartApp
 
         private readonly double Cupon = 0.9;
 
-        public float OrderPrice { get; set; }
+        public double OrderPrice { get; set; }
 
         public void checkout()
         {

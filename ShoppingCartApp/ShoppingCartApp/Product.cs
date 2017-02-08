@@ -10,6 +10,8 @@ namespace ShoppingCartApp
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public float ProductPrice { get; set; }
+        public double ProductPrice { get; set; }
+
+
     }
 }
