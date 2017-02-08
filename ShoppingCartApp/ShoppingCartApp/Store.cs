@@ -10,5 +10,6 @@ namespace ShoppingCartApp
     {
         public string StoreName { get; set; }
         public IList<Product> Products { get; set; }
+        public Boolean Checkout { get; set; }
     }
 }

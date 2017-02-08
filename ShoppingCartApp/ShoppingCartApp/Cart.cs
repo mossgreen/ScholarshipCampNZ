@@ -13,6 +13,8 @@ namespace ShoppingCartApp
 
         public IList<Product> Products { get; set; }
 
+        public Boolean CartIsEmpty { get; set; }
+
         public double GetPrice()
         {
             if (Products == null) return 0;
