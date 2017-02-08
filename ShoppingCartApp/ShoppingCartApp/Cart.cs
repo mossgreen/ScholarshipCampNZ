@@ -6,18 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShoppingCartApp
 {
-    class Program
+    class cart
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("hi moss");
 
-
-
-
-
-
-            Console.ReadLine();
-        }
     }
 }

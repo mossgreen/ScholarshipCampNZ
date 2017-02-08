@@ -6,18 +6,10 @@ using System.Threading.Tasks;
 
 namespace ShoppingCartApp
 {
-    class Program
+    class Product
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("hi moss");
-
-
-
-
-
-
-            Console.ReadLine();
-        }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public float ProductPrice { get; set; }
     }
 }
