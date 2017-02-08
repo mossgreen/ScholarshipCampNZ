@@ -10,37 +10,41 @@ namespace ShoppingCartApp
     {
         static void Main(string[] args)
         {
-            //todo: add user
 
-            User u = new User {UserName = "moss"};
-            Console.WriteLine($"Welcome {u.UserName}! we have folling products:");
+            Boolean cartIsEmpty = true;
+            //todo: add user
+            Console.WriteLine($"Hi, what's your name?");
+            string name = Console.ReadLine().ToString();
+            User u = new User {UserName = name};
+            Console.WriteLine($"Welcome {u.UserName}! ");
             Console.WriteLine();
 
-            Cart c = new Cart {CartId = 1,Products = new List<Product>()};
-            c.Products.Add(p1);
-            c.Products.Add(p2);
-            c.TotalPrice = c.GetPrice();
+            DB db = new DB();
 
-            Console.WriteLine("Do you want to checkout?");
+            Console.WriteLine($" this is {db.store.StoreName}. we've got following products:");
 
-            //yes,to checkout; No, go on shopping
-            //yes =>
-            Console.WriteLine($"Thanks {u.UserName} ! products you choose {c.Products.Count} products");
-
-
-            foreach (Product p in c.Products)
+            foreach (Product p in db.store.Products)
             {
-                Console.WriteLine(p.ProductName);
+                Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
             }
-           // Console.WriteLine(c.Products.Select(p => p.ProductName));
+
             
+            Console.WriteLine("hit '0' to Leave store");
+            Console.WriteLine("hit product id to add it to your cart");
+            if (!cartIsEmpty)
+            {
+                Console.WriteLine("-----------------hit '1' to checkout");
+                Console.WriteLine("-----------------hit '2' to empty your cart");
+            }
 
-            Console.WriteLine(c.TotalPrice);
-
-            Console.WriteLine(c.Products.Count);
-
-
-
+            try
+            {
+                int input = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Incorrect input");
+            }
 
 
             Console.ReadLine();
