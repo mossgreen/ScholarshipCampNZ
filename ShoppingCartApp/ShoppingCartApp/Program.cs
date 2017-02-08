@@ -10,8 +10,6 @@ namespace ShoppingCartApp
     {
         static void Main(string[] args)
         {
-            Product p1 = new Product { ProductName = "p1 name",ProductPrice = 11.11};
-            Product p2 = new Product { ProductName = "p2 name",ProductPrice = 22.22};
             //todo: add user
 
             User u = new User {UserName = "moss"};
