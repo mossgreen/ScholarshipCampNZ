@@ -12,27 +12,27 @@ namespace ShoppingCartApp
 
         static void Main(string[] args)
         {
-            
+
             //todo: add user
             Console.WriteLine($"Hi, what's your name?");
             string name = Console.ReadLine()?.ToString();
-            User u = new User { UserName = name };
+            User u = new User {UserName = name};
             Console.WriteLine($"Welcome {u.UserName}!\n ");
             DB db = new DB();
 
             while (!db.store.Checkout)
             {
                 Greeting(u, db);
-                showCart(u, db);
+                ShowCart(u, db);
                 Input(db, u);
             }
-            
+
 
         }
 
         private static void Input(DB db, User u)
         {
-            inputInstruction(db);
+            InputInstruction(db);
             try
             {
                 int userInput = int.Parse(Console.ReadLine());
@@ -56,19 +56,19 @@ namespace ShoppingCartApp
                 Console.WriteLine($"wrong input.");
             }
 
-          //  showCart(u, db);
+            //  showCart(u, db);
         }
 
-        private static void inputInstruction(DB db)
+        private static void InputInstruction(DB db)
         {
             Console.WriteLine("\n-----------------input product id to add it to your cart");
             Console.WriteLine("-----------------hit '0' to tempty your cart");
             Console.WriteLine("-----------------hit '1' to checkout \n");
         }
 
-        private static void showCart(User u, DB db)
+        private static void ShowCart(User u, DB db)
         {
-            
+
             // if cart is empty, ask user to pick products
             if (db.cart.CartIsEmpty)
             {
@@ -77,13 +77,28 @@ namespace ShoppingCartApp
             else
             {
                 //if cart is not empty, report counts, and list all items
-                Console.WriteLine($"\nyou've got {db.cart.Products.Count} items in your cart, see the following list:\n ");
-
-                foreach (Product p in db.cart.Products)
+                Console.WriteLine(
+                    $"\nyou've got {db.cart.Products.Count} items in your cart, see the following list:\n ");
+                try
                 {
-                    Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
-                }
 
+                    foreach (Product p in db.cart.Products)
+                    {
+                        Console.WriteLine(
+                            $"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                    Console.WriteLine("\n\nsorry, we don't provide this product yet.");
+                }
+                finally
+                {
+                    ShowCart(u, db);
+                    Console.ReadLine();
+                }
 
             }
 
