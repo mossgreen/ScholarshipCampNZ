@@ -17,8 +17,8 @@ namespace ShoppingCartApp
             Console.WriteLine($"Hi, what's your name?");
             string name = Console.ReadLine()?.ToString();
             User u = new User { UserName = name };
+            Console.WriteLine($"Welcome {u.UserName}!\n ");
             DB db = new DB();
-            db.cart.CartIsEmpty = true;
 
             while (!db.store.Checkout)
             {
@@ -33,23 +33,30 @@ namespace ShoppingCartApp
         private static void Input(DB db, User u)
         {
             inputInstruction(db);
-            int userInput = int.Parse(Console.ReadLine());
-
-            if (userInput == 0)
+            try
             {
-                db.cart = new Cart();
-                db.cart.Products = new List<Product>();
-                Greeting(u, db);
-                db.cart.CartIsEmpty = false;
+                int userInput = int.Parse(Console.ReadLine());
+
+                if (userInput == 0)
+                {
+                    db.cart = new Cart();
+                    db.cart.Products = new List<Product>();
+                    Greeting(u, db);
+                    db.cart.CartIsEmpty = true;
+                }
+                else
+                {
+                    Product product = db.store.Products.FirstOrDefault(p => p.ProductId == userInput);
+                    db.cart.Products.Add(product);
+                    db.cart.CartIsEmpty = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Product product = db.store.Products.FirstOrDefault(p => p.ProductId == userInput);
-                db.cart.Products.Add(product);
-                db.cart.CartIsEmpty = false;
+                Console.WriteLine($"wrong input.");
             }
 
-            showCart(u, db);
+          //  showCart(u, db);
         }
 
         private static void inputInstruction(DB db)
@@ -65,7 +72,7 @@ namespace ShoppingCartApp
             // if cart is empty, ask user to pick products
             if (db.cart.CartIsEmpty)
             {
-                Console.WriteLine($"Hi {u.UserName}, your cart is empty, come and pick some!");
+                Console.WriteLine($"\nHi {u.UserName}, your cart is empty, come and pick some!");
             }
             else
             {
@@ -84,7 +91,7 @@ namespace ShoppingCartApp
 
         private static void Greeting(User u, DB db)
         {
-            Console.WriteLine($"Welcome {u.UserName}!\n ");
+
             Console.WriteLine($" this is {db.store.StoreName}. we've got following products:\n");
 
             foreach (Product p in db.store.Products)

@@ -28,6 +28,7 @@ namespace ShoppingCartApp
 
             Cart c = new Cart();
             c.Products = new List<Product>();
+            c.CartIsEmpty = true;
             this.cart = c;
         }
 
