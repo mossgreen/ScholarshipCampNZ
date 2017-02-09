@@ -11,6 +11,13 @@ namespace ShoppingCartApp
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
+        public int Quantity { get; set; }
+
+        public int Sell(int sellQ)
+        {
+            if (Quantity - sellQ >= 0) return Quantity - sellQ;
+            else return -1;
+        }
 
 
     }

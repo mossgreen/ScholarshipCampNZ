@@ -53,7 +53,7 @@ namespace ShoppingCartApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"wrong input.");
+                Console.WriteLine($"wrong input. {ex}");
             }
 
             //  showCart(u, db);
@@ -94,12 +94,6 @@ namespace ShoppingCartApp
 
                     Console.WriteLine("\n\nsorry, we don't provide this product yet.");
                 }
-                finally
-                {
-                    ShowCart(u, db);
-                    Console.ReadLine();
-                }
-
             }
 
         }
@@ -108,11 +102,12 @@ namespace ShoppingCartApp
         {
 
             Console.WriteLine($" this is {db.store.StoreName}. we've got following products:\n");
+            db.store.ShowStoreProducts();
 
-            foreach (Product p in db.store.Products)
-            {
-                Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
-            }
+            //foreach (Product p in db.store.Products)
+            //{
+            //    Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
+            //}
         }
     }
 }
