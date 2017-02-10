@@ -14,9 +14,9 @@ namespace ShoppingCartApp
         public DB()
         {
 
-            Product p1 = new Product { ProductId = 11, ProductName = "p1 name", ProductPrice = 11.11, Quantity = 1};
-            Product p2 = new Product { ProductId = 22, ProductName = "p2 name", ProductPrice = 22.22, Quantity = 2 };
-            Product p3 = new Product { ProductId = 33, ProductName = "p3 name", ProductPrice = 33.33, Quantity = 3 };
+            Product p1 = new Product { ProductId = 11, ProductName = "p1 name", ProductPrice = 11.11, InStock = 1};
+            Product p2 = new Product { ProductId = 22, ProductName = "p2 name", ProductPrice = 22.22, InStock = 2 };
+            Product p3 = new Product { ProductId = 33, ProductName = "p3 name", ProductPrice = 33.33, InStock = 3 };
 
             Store s = new Store();
             s.Products = new List<Product>();

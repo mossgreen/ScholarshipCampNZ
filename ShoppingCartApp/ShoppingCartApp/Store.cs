@@ -12,12 +12,17 @@ namespace ShoppingCartApp
         public IList<Product> Products { get; set; }
         public Boolean Checkout { get; set; }
 
+        public void Sell(Product p)
+        {
+            p.InStock--;
+        }
+
         public void ShowStoreProducts ()
 
         {
             foreach (Product p in this.Products)
             {
-                Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}, In Stock: {p.Quantity}");
+                Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}, In Stock: {p.InStock}");
             }
         }
     }

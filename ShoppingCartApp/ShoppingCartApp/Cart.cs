@@ -14,11 +14,24 @@ namespace ShoppingCartApp
         public IList<Product> Products { get; set; }
 
         public Boolean CartIsEmpty { get; set; }
+        public int Quantity { get; set; }
 
-        public double GetPrice()
+        public void AddToCart(Product p)
         {
-            if (Products == null) return 0;
-            return Products.Sum(p => p.ProductPrice);
+            p.InCart++;
+            this.Products.Add(p);
+            this.CartIsEmpty = false;
+
+        }
+
+        public void listCart()
+        {
+            Console.WriteLine( $"\nyou've got {this.Products.Count} items in your cart, see the following list:\n ");
+            foreach (Product p in this.Products.Distinct())
+            {
+                Console.WriteLine(
+                    $"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}, quantity: {p.InCart}");
+            }
         }
     }
 }

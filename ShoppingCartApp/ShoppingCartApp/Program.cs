@@ -47,8 +47,8 @@ namespace ShoppingCartApp
                 else
                 {
                     Product product = db.store.Products.FirstOrDefault(p => p.ProductId == userInput);
-                    db.cart.Products.Add(product);
-                    db.cart.CartIsEmpty = false;
+                    db.store.Sell(product);
+                    db.cart.AddToCart(product);
                 }
             }
             catch (Exception ex)
@@ -77,22 +77,15 @@ namespace ShoppingCartApp
             else
             {
                 //if cart is not empty, report counts, and list all items
-                Console.WriteLine(
-                    $"\nyou've got {db.cart.Products.Count} items in your cart, see the following list:\n ");
+
                 try
                 {
-
-                    foreach (Product p in db.cart.Products)
-                    {
-                        Console.WriteLine(
-                            $"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
-                    }
-
+                    db.cart.listCart();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    Console.WriteLine("\n\nsorry, we don't provide this product yet.");
+                    Console.WriteLine($"\n\n{ex}.");
                 }
             }
 
@@ -103,11 +96,6 @@ namespace ShoppingCartApp
 
             Console.WriteLine($" this is {db.store.StoreName}. we've got following products:\n");
             db.store.ShowStoreProducts();
-
-            //foreach (Product p in db.store.Products)
-            //{
-            //    Console.WriteLine($"product ID: {p.ProductId}, product name: {p.ProductName}, price: {p.ProductPrice}");
-            //}
         }
     }
 }
