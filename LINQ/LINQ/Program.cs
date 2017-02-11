@@ -10,12 +10,6 @@ namespace LINQ
     {
         static void Main(string[] args)
         {
-            foreach (Student student in students)
-            {
-                Console.WriteLine(student.First.Length);
-            }
-
-
             //1 highestScore
             var highestScore = students.Max(s => s.Scores.Sum());
             var studentWithHighestScore = students.Find(s => s.Scores.Sum().Equals(highestScore));
@@ -24,35 +18,33 @@ namespace LINQ
             //2 Display students with first name length greater than 10
             Console.WriteLine($"\nDisplay students with first name length greater than 10");
             var studentWithFirstNameLengthG10 = students.FindAll(s => s.First.Length > 10);
-
             printList(studentWithFirstNameLengthG10);
-
-            //if (studentWithFirstNameLengthG10.Count == 0)
-            //{
-            //    Console.WriteLine("---->none of them qualified to this requirement.");
-
-            //}
-            //else
-            //{
-            //    foreach (Student s in studentWithFirstNameLengthG10)
-            //    {
-            //        Console.WriteLine($"---->{s.ToString()}");
-            //    }
-            //}
 
             //3. Display student with total score greater than 270
             Console.WriteLine($"\nDisplay student with total score greater than 270: ");
             var studentWithTotalScoreG70 = students.FindAll(s => s.Scores.Sum() > 270);
-
             printList(studentWithTotalScoreG70);
 
+            //4. Print students with reversed name
+            Console.WriteLine($"\nPrint students with reversed name: ");
+            List<Student> reverseStudents = students.ToList();
+            
+           // students.ForEach(s => reverseStudents.Add(new Student()));
 
-            // Console.WriteLine(studentWithHighestScore.ToString());
+            reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
+            reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
+            printList(reverseStudents);
+            printList(students);
 
-            Console.WriteLine();
+            //5. a new List has FirstName and LastName property
+            Console.WriteLine($"\n a new List has FirstName and LastName property: ");
+            List<Student> newStudents;
+            newStudents = students.Select(s => new Student {First = s.First, Last = s.Last}).ToList();
+            printList(newStudents);
+            //var TheListOfObjectsB = TheListObjectsA.Select(a => new ObjectB() { Prop1 = a.Prop1, Prop2 = a.Prop2 }).ToList();
+                             
 
-
-            Console.ReadKey();
+           Console.ReadKey();
         }
 
         private static void printList(List<Student> sl)
@@ -93,11 +85,18 @@ namespace LINQ
         public string First { get; set; }
         public string Last { get; set; }
         public int ID { get; set; }
-        public IList<int> Scores;
+        public List<int> Scores;
 
         public override string ToString()
         {
-            return $"ID: {ID}, FirstName:{this.First}, Lastname: {Last}, TotalScore: {this.Scores.Sum()}";
+            if (this.Scores != null)
+            {
+                return $"ID: {ID}, FirstName:{this.First}, Lastname: {Last}, TotalScore: {this.Scores.Sum()}";
+            }
+            else
+            {
+                return $"FirstName:{this.First}, Lastname: {Last}";
+            }
         }
     }
 
