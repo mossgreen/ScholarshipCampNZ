@@ -27,24 +27,42 @@ namespace LINQ
 
             //4. Print students with reversed name
             Console.WriteLine($"\nPrint students with reversed name: ");
-            List<Student> reverseStudents = students.ToList();
-            
-           // students.ForEach(s => reverseStudents.Add(new Student()));
+            List<Student> reverseStudents = new List<Student>(students.ToList());
 
             reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
             reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
             printList(reverseStudents);
+
+            reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
+            reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
             printList(students);
+
 
             //5. a new List has FirstName and LastName property
             Console.WriteLine($"\n a new List has FirstName and LastName property: ");
             List<Student> newStudents;
             newStudents = students.Select(s => new Student {First = s.First, Last = s.Last}).ToList();
             printList(newStudents);
-            //var TheListOfObjectsB = TheListObjectsA.Select(a => new ObjectB() { Prop1 = a.Prop1, Prop2 = a.Prop2 }).ToList();
-                             
 
-           Console.ReadKey();
+
+            //6.Print students with First name Descending order
+            Console.WriteLine($"\nPrint students with First name Descending order");
+            List<Student> firstNameDescStudents = new List<Student>(students.ToList());
+
+            var first = firstNameDescStudents.OrderByDescending(s => s.First);
+
+            foreach (var s in first)
+            {
+                Console.WriteLine(s.ToString());
+            }
+
+
+            //firstNameDescStudents.OrderByDescending(s => s.ID);
+            //printList(first);
+
+
+
+            Console.ReadKey();
         }
 
         private static void printList(List<Student> sl)
