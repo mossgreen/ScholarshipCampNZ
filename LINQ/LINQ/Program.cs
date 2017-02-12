@@ -56,12 +56,16 @@ namespace LINQ
                 Console.WriteLine(s.ToString());
             }
 
+            //7. Print students with Last name Ascending order
+            Console.WriteLine($"\nPrint students with Last name Ascending order");
+            List<Student> lastNameDescStudents = new List<Student>(students.ToList());
 
-            //firstNameDescStudents.OrderByDescending(s => s.ID);
-            //printList(first);
+            var last = lastNameDescStudents.OrderBy(s => s.Last);
 
-
-
+            foreach (var s in last)
+            {
+                Console.WriteLine(s.ToString());
+            }
             Console.ReadKey();
         }
 
