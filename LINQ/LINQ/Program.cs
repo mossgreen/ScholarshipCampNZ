@@ -29,13 +29,21 @@ namespace LINQ
             Console.WriteLine($"\nPrint students with reversed name: ");
             List<Student> reverseStudents = new List<Student>(students.ToList());
 
-            reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
-            reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
-            printList(reverseStudents);
+            var reverse = students.Select(s => new {reverseFirstname = new string(s.First.Reverse().ToArray()), reverseLastName=new string(s.Last.Reverse().ToArray()) });
 
-            reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
-            reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
-            printList(students);
+            foreach (var s in reverse)
+            {
+                Console.WriteLine($"revered first name: {s.reverseFirstname} , and last name: {s.reverseLastName}" );
+               // Console.WriteLine(s.reverseLastName);
+            }
+
+            //reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
+            //reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
+            //printList(reverseStudents);
+
+            //reverseStudents.ForEach(s => s.First = new string(s.First.Reverse().ToArray()));
+            //reverseStudents.ForEach(s => s.Last = new string(s.Last.Reverse().ToArray()));
+            //printList(students);
 
 
             //5. a new List has FirstName and LastName property
