@@ -49,18 +49,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataHelpers.cs" />
+    <Compile Include="Migrations\201702160742379_Initial.cs" />
+    <Compile Include="Migrations\201702160742379_Initial.Designer.cs">
+      <DependentUpon>201702160742379_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702160759080_Implement interface.cs" />
+    <Compile Include="Migrations\201702160759080_Implement interface.Designer.cs">
+      <DependentUpon>201702160759080_Implement interface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NinjaContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NinjaDomain.Classes\NinjaDomain.Classes.csproj">
-      <Project>{90A07E43-018C-49A0-BA82-32F1628A32F5}</Project>
+    <ProjectReference Include="..\Ninja.DomainClasses\NinjaDomain.Classes.csproj">
+      <Project>{7073f7fe-f900-4bdd-8b10-6bc3d88302d1}</Project>
       <Name>NinjaDomain.Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702160742379_Initial.resx">
+      <DependentUpon>201702160742379_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702160759080_Implement interface.resx">
+      <DependentUpon>201702160759080_Implement interface.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
