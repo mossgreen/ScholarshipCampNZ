@@ -17,8 +17,8 @@ namespace SchoolConsole
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
+            this.CourseInstructor = new HashSet<CourseInstructor>();
             this.StudentGrade = new HashSet<StudentGrade>();
-            this.Course = new HashSet<Course>();
         }
     
         public int PersonID { get; set; }
@@ -27,10 +27,10 @@ namespace SchoolConsole
         public Nullable<System.DateTime> HireDate { get; set; }
         public Nullable<System.DateTime> EnrollmentDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseInstructor> CourseInstructor { get; set; }
         public virtual OfficeAssignment OfficeAssignment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentGrade> StudentGrade { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Course { get; set; }
     }
 }

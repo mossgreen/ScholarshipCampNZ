@@ -26,6 +26,7 @@ namespace SchoolConsole
         }
     
         public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<CourseInstructor> CourseInstructor { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<OfficeAssignment> OfficeAssignment { get; set; }
         public virtual DbSet<OnlineCourse> OnlineCourse { get; set; }
