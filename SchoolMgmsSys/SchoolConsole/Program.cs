@@ -11,9 +11,64 @@ namespace SchoolConsole
     {
         static void Main(string[] args)
         {
+            // CreateInstructor();
+
+            //CreateStudent();
+
+        }
+
+        private static void CreateStudent()
+        {
             using (var db = new SchoolEntities())
             {
+                Console.WriteLine("Please type Student's first name");
+                string sFirstName = Console.ReadLine();
 
+                Console.WriteLine("Please type Student's last name");
+                string sLastName = Console.ReadLine();
+
+                Console.WriteLine("Please type Course title for this student");
+
+                string cTitle = Console.ReadLine();
+
+                Console.WriteLine("Please type Department Id");
+
+                foreach (var department in db.Department)
+                {
+                    Console.WriteLine($"{department.Name}: {department.DepartmentID}");
+                }
+
+                int dId = int.Parse(Console.ReadLine());
+
+                var p = new Person();
+                p.FirstName = sFirstName;
+                p.LastName = sLastName;
+
+                var c = new Course();
+                c.Title = cTitle;
+                c.DepartmentID = dId;
+
+
+                db.Person.Add(p);
+                db.Course.Add(c);
+                db.SaveChanges();
+
+                var sg = new StudentGrade();
+                sg.CourseID = c.CourseID;
+                sg.StudentID = p.PersonID;
+                db.StudentGrade.Add(sg);
+
+                Console.WriteLine($"FirstName: {p.FirstName}, Last Name: {p.LastName}, Course title: {c.Title}");
+
+                Console.ReadLine();
+            }
+        }
+
+
+        private static void CreateInstructor()
+        {
+            using (var db = new SchoolEntities())
+            {
                 Console.WriteLine("Please type Course Instructor's first name");
                 string pFirstName = Console.ReadLine();
 
@@ -31,7 +86,8 @@ namespace SchoolConsole
                     Console.WriteLine($"{department.Name}: {department.DepartmentID}");
                 }
 
-                string dId = Console.ReadLine();
+                int dId = int.Parse(Console.ReadLine());
+
 
                 var p = new Person();
                 p.FirstName = pFirstName;
@@ -39,10 +95,7 @@ namespace SchoolConsole
 
                 var c = new Course();
                 c.Title = cTitle;
-
-                var d = new Department();
-                d.DepartmentID = int.Parse(dId);
-                db.Department.Add(d);
+                c.DepartmentID = dId;
 
                 db.Person.Add(p);
                 db.Course.Add(c);
@@ -53,11 +106,10 @@ namespace SchoolConsole
                 ci.PersonID = p.PersonID;
                 db.CourseInstructor.Add(ci);
 
-                Console.WriteLine($"FirstName: {p.FirstName}");
+                Console.WriteLine($"FirstName: {p.FirstName}, Course title: {c.Title}");
 
                 Console.ReadLine();
             }
-
         }
     }
 }
