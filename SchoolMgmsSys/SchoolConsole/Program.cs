@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,26 @@ namespace SchoolConsole
         {
             // CreateInstructor();
             //CreateStudent();
-           // CreateCourse();
+            // CreateCourse();
+            //GetStudentGradeByCourse();
+            //View all  Instructors and display the course they teach
+            //GetInstructorsWithCourse();
+        }
 
-            GetStudentGradeByCourse();
+        private static void GetInstructorsWithCourse()
+        {
+            using (var db = new SchoolEntities())
+            {
+                Console.WriteLine("view all instructors and the course they teach");
+                var instructors = db.CourseInstructor.Distinct().Include(ci => ci.Course).Include(ci => ci.Person);
+
+                foreach (var i in instructors)
+                {
+                    Console.WriteLine($" Name: {i.Person.FirstName} {i.Person.LastName}, course title: {i.Course.Title}");
+                }
+            }
+
+            Console.ReadLine();
         }
 
         private static void GetStudentGradeByCourse()
