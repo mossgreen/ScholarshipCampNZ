@@ -12,9 +12,39 @@ namespace SchoolConsole
         static void Main(string[] args)
         {
             // CreateInstructor();
-
             //CreateStudent();
+            CreateCourse();
+        }
 
+        private static void CreateCourse()
+        {
+            using (var db = new SchoolEntities())
+            {
+                Console.WriteLine("Please type a course name");
+                string cTitle = Console.ReadLine();
+
+                Console.WriteLine("Please type Department Id");
+
+                foreach (var department in db.Department)
+                {
+                    Console.WriteLine($"{department.Name}: {department.DepartmentID}");
+                }
+
+                int dId = int.Parse(Console.ReadLine());
+
+                string dName = db.Department.FirstOrDefault(n => n.DepartmentID == dId).Name;
+
+                var c = new Course();
+                c.Title = cTitle;
+                c.DepartmentID = dId;
+
+                db.Course.Add(c);
+                db.SaveChanges();
+
+                Console.WriteLine($"Course title: {c.Title}, the Department is {dName}");
+
+                Console.ReadLine();
+            }
         }
 
         private static void CreateStudent()
