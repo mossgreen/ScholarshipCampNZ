@@ -13,7 +13,39 @@ namespace SchoolConsole
         {
             // CreateInstructor();
             //CreateStudent();
-            CreateCourse();
+           // CreateCourse();
+
+            GetStudentGradeByCourse();
+        }
+
+        private static void GetStudentGradeByCourse()
+        {
+            using (var db = new SchoolEntities())
+            {
+                Console.WriteLine("To get student grades by course ID as following");
+                foreach (var course in db.Course)
+                {
+                    Console.WriteLine($"{course.Title}: {course.CourseID}");
+                }
+
+                int cTitle = int.Parse(Console.ReadLine());
+
+                //var sgs = db.StudentGrade.Where(sg => sg.CourseID == cTitle);
+                //foreach (var s in sgs)
+                //{
+                //    Console.WriteLine($"Student ID: {s.StudentID}");
+                //}
+
+                var stus = db.StudentGrade.Include(sg => sg.Person)
+                    .Where(sg => sg.CourseID == cTitle).ToList();
+                foreach (var  ss in stus)
+                {
+                    Console.WriteLine($" entollID: {ss.EnrollmentID}, student ID: {ss.StudentID}, student first name: {ss.Person.FirstName}");
+                }
+
+
+                Console.ReadLine();
+            }
         }
 
         private static void CreateCourse()
