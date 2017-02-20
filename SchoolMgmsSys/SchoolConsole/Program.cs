@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,66 @@ namespace SchoolConsole
             //GetStudentGradeByCourse();
             //View all  Instructors and display the course they teach
             //GetInstructorsWithCourse();
+            // DeleteAStudentById();
+
+            //Delete a Course
+
+
+            using (var db = new SchoolEntities())
+            {
+                Console.WriteLine("You can delete a course by couse Id");
+
+                var courses = db.Course.Include(c => c.OnlineCourse)
+                    .Include(olc => olc.CourseID)
+                    .Include(osc => osc.CourseID)
+                    .Include(ci => ci.CourseID)
+                    .Include(sg => sg.CourseID);
+
+                foreach (var c in courses)
+                {
+                    Console.WriteLine($" CourseId: {c.CourseID},  Course Title {c.Title}");
+                }
+
+                int courseId = int.Parse(Console.ReadLine());
+
+                var course = db.Course.FirstOrDefault(c => c.CourseID == courseId);
+                //var s = db.StudentGrade.Include(sgp => sgp.Person).Include(sgc => sgc.Course).Where(n => n.Person);
+                db.OnlineCourse.FirstOrDefault(clc => clc.CourseID == courseId).remove();
+                db.Person.FirstOrDefault(p => p.PersonID == sg.StudentID);
+
+                db.SaveChanges();
+            }
+        }
+
+        private static void DeleteAStudentById()
+        {
+            using (var db = new SchoolEntities())
+            {
+                Console.WriteLine("You can delete a student by student Id");
+
+                var students = db.StudentGrade.Include(s => s.Person);
+
+                foreach (var s in students)
+                {
+                    Console.WriteLine($" StudentId: {s.StudentID}, student name {s.Person.FirstName} {s.Person.LastName}");
+                }
+
+                int studentId = int.Parse(Console.ReadLine());
+
+                var sg = db.StudentGrade.Where(s => s.StudentID == studentId);
+
+                foreach (var s in sg)
+                {
+                    db.StudentGrade.Remove(s);
+                   
+                }
+
+                var pp = db.Person.FirstOrDefault(p => p.PersonID == studentId);
+
+                db.Person.Remove(pp);
+
+                db.SaveChanges();
+            }
         }
 
         private static void GetInstructorsWithCourse()
