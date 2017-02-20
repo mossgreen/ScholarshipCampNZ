@@ -6,6 +6,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32.SafeHandles;
 
 namespace SchoolConsole
 {
@@ -20,31 +21,57 @@ namespace SchoolConsole
             //View all  Instructors and display the course they teach
             //GetInstructorsWithCourse();
             // DeleteAStudentById();
+            //DeleteACourseById();
 
-            //Delete a Course
+            //Ability to Update a Students  record
 
+            /*
+                input student's Id, or name, use "contains" linq method, return the student if exist, select which property to change, then update the db
+             */
 
+            /*
+             Change Course a Instructor is teaching
+             
+             */
+        }
+
+        private static void DeleteACourseById()
+        {
             using (var db = new SchoolEntities())
             {
                 Console.WriteLine("You can delete a course by couse Id");
 
-                var courses = db.Course.Include(c => c.OnlineCourse)
+                var coursess = db.Course.Include(c => c.OnlineCourse)
                     .Include(olc => olc.CourseID)
                     .Include(osc => osc.CourseID)
-                    .Include(ci => ci.CourseID)
+                    .Include(cii => cii.CourseID)
                     .Include(sg => sg.CourseID);
 
-                foreach (var c in courses)
+                foreach (var c in coursess)
                 {
                     Console.WriteLine($" CourseId: {c.CourseID},  Course Title {c.Title}");
                 }
 
                 int courseId = int.Parse(Console.ReadLine());
 
-                var course = db.Course.FirstOrDefault(c => c.CourseID == courseId);
-                //var s = db.StudentGrade.Include(sgp => sgp.Person).Include(sgc => sgc.Course).Where(n => n.Person);
-                db.OnlineCourse.FirstOrDefault(clc => clc.CourseID == courseId).remove();
-                db.Person.FirstOrDefault(p => p.PersonID == sg.StudentID);
+                var OnsiteCourse = db.OnsiteCourse.FirstOrDefault(os => os.CourseID == courseId);
+                db.OnsiteCourse.Remove(OnsiteCourse);
+
+                var onlinecourse = db.OnlineCourse.FirstOrDefault(olc => olc.CourseID == courseId);
+                db.OnlineCourse.Remove(onlinecourse);
+
+                var courseInstructor = db.CourseInstructor.First(ci => ci.CourseID == courseId);
+                db.CourseInstructor.Remove(courseInstructor);
+
+                var studentGrade = db.StudentGrade.FirstOrDefault(sg => sg.CourseID == courseId);
+                db.StudentGrade.Remove(studentGrade);
+
+
+                var courses = db.Course.Where(c => c.CourseID == courseId);
+                foreach (var c in courses)
+                {
+                    db.Course.Remove(c);
+                }
 
                 db.SaveChanges();
             }
