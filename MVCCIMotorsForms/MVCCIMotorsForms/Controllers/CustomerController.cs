@@ -63,5 +63,14 @@ namespace MVCCIMotorsForms.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Customer");
         }
+
+        public ActionResult Delete(int id)
+        {
+            var customer = db.People.Find(id);
+            db.People.Remove(customer);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Customer");
+        }
     }
 }

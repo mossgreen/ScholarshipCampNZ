@@ -38,17 +38,18 @@ namespace MVCCIMotorsForms.Controllers
 
 
             var stafflist = db.People
-                .Where(x => x.PersonTypeId != 4)
-                                    .Select(x =>
-                                            new StaffClass
-                                            {
-                                                StaffId = x.PersonId,
-                                                FirstName = x.FirstName,
-                                                LastName = x.LastName,
-                                                Address1 = x.Address1,
-                                                Address2 = x.Address2,
-                                            })
-                                        .ToList();
+                .Where(x =>
+                    x.PersonTypeId != 4)
+                    .Select(x =>
+                        new StaffClass
+                        {
+                            StaffId = x.PersonId,
+                            FirstName = x.FirstName,
+                            LastName = x.LastName,
+                            Address1 = x.Address1,
+                            Address2 = x.Address2,
+                        })
+                    .ToList();
 
             //StaffManagement.cshtml
             return View(stafflist);

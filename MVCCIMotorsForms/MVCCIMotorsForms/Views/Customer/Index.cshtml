@@ -28,7 +28,10 @@
             <td>@ct.Address2</td>
             <td>@ct.PhoneNumber</td>
             <td>@ct.SelectedSuburb</td>
-            <td> <a href="/Customer/EditCustomer/?customerId=@ct.CustomerId">Edit</a></td>
+            <td> <a href="/Customer/Edit/?customerId=@ct.CustomerId">Edit</a>
+                |
+                <a href="/Customer/Delete/?id=@ct.CustomerId">Delete</a>
+            </td>
 
         </tr>
 
