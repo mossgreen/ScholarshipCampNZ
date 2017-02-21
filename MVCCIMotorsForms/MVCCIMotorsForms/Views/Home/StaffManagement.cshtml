@@ -12,6 +12,7 @@
         <th>FirstName</th>
         <th>LastName</th>
         <th>Address1</th>
+        <th>Address2</th>
         <th>&nbsp</th>
     </tr>
     @foreach( var sm in Model)
@@ -21,6 +22,7 @@
             <td>@sm.FirstName</td>
             <td>@sm.LastName</td>
             <td>@sm.Address1</td>
+            <td>@sm.Address2</td>
             
             <td><a href="/Home/EditStaffMember?staffId=@sm.StaffId">Edit</a></td>
         </tr>
