@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MVCCIMotorsForms.Models.SaleOrderViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List all sale orders</h2>
+
+
+<a href="/SaleOrder/Create">Create</a>
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>SaleOrder ID</td>
+        <td>OrderDate</td>
+        <td>Person ID</td>
+        <td>OrderNumber</td>
+        <th>&nbsp</th>
+    </tr>
+    @foreach (var so in Model)
+    {
+        <tr>
+            <td>@so.SaleOrderId</td>
+            <td>@so.OrderDate</td>
+            <td>@so.PersonId</td>
+            <td>@so.OrderNumber</td>
+            <td>
+                <a href="/SalesOrder/Edit/?id=@so.SaleOrderId">Edit</a>
+                |
+                <a href="/SalesOrder/Delete/?id=@so.SaleOrderId">Delete</a>
+            </td>
+
+        </tr>
+
+    }
+
+</table>

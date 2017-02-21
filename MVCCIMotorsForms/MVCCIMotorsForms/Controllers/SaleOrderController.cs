@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using MVCCIMotorsForms.Models;
+
+namespace MVCCIMotorsForms.Controllers
+{
+    public class SaleOrderController : Controller
+    {
+
+        IC_MotersEntities db = new IC_MotersEntities();
+        // GET: Order
+        public ActionResult Index()
+        {
+            var saleOrders = db.SalesOrders
+                .Select(so => new SaleOrderViewModel
+            {
+              SaleOrderId = so.SalesOrderId,
+                    OrderDate = so.OrderDate,
+                    PersonId = so.PersonId,
+                    OrderNumber = so.OrderNumber
+                });
+
+            return View(saleOrders);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(SaleOrderViewModel viewModel)
+        {
+            var saleorder = new SalesOrder
+            {
+                OrderDate = DateTime.Now,
+                PersonId = viewModel.PersonId,
+                OrderNumber = viewModel.OrderNumber
+            };
+
+
+            db.SalesOrders
+                .Add(saleorder);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "SaleOrder");
+        }
+    }
+}
