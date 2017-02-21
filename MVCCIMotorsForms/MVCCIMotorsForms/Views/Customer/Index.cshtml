@@ -1,7 +1,36 @@
-﻿
+﻿@model IEnumerable<MVCCIMotorsForms.Models.CustomerViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List all customers here</h2>
+
+
+<a href="/Customer/CreateCustomer">Create</a>
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>Customer Id</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Address 1</td>
+        <td>Address 2</td>
+        <td>Suburb</td>
+        <th>&nbsp</th>
+    </tr>
+    @foreach (var ct in Model)
+    {
+        <tr>
+            <td>@ct.CustomerId</td>
+            <td>@ct.FirstName</td>
+            <td>@ct.LastName</td>
+            <td>@ct.Address1</td>
+            <td>@ct.Address2</td>
+            <td>@ct.SelectedSuburb</td>
+            <td> <a href="/Customer/EditCustomer/?customerId=@ct.CustomerId">Edit</a></td>
+
+        </tr>
+
+    }
+
+</table>
 

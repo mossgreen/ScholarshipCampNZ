@@ -8,11 +8,9 @@ namespace MVCCIMotorsForms.Models
 {
     public class CustomerViewModel
     {
-
+        
         public int CustomerId { get; set; }
 
-        //display annotation will afect the view on "Home/EditStaffMember?staffId=4"
-        //@Html.LabelFor will display the name defined here
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Display(Name = "Last Name ")]
@@ -27,5 +25,10 @@ namespace MVCCIMotorsForms.Models
         public IEnumerable<SuburbType> SuburbTypes { get; set; }
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        public CustomerViewModel()
+        {
+            SuburbTypes = new List<SuburbType>();
+        }
     }
 }
