@@ -12,18 +12,35 @@ namespace MVCCIMotorsForms.Controllers
 
         IC_MotersEntities db = new IC_MotersEntities();
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var saleOrders = db.SalesOrders
-                .Select(so => new SaleOrderViewModel
+            if (id == 0)
             {
-              SaleOrderId = so.SalesOrderId,
-                    OrderDate = so.OrderDate,
-                    PersonId = so.PersonId,
-                    OrderNumber = so.OrderNumber
-                });
+                var saleOrders = db.SalesOrders
+                    .Select(so => new SaleOrderViewModel
+                    {
+                        SaleOrderId = so.SalesOrderId,
+                        OrderDate = so.OrderDate,
+                        PersonId = so.PersonId,
+                        OrderNumber = so.OrderNumber
+                    });
 
-            return View(saleOrders);
+                return View(saleOrders);
+            }
+            else
+            {
+              var  saleOrders = db.SalesOrders
+                    .Where(so => so.PersonId == id)
+                   .Select(so => new SaleOrderViewModel
+                   {
+                       SaleOrderId = so.SalesOrderId,
+                       OrderDate = so.OrderDate,
+                       PersonId = so.PersonId,
+                       OrderNumber = so.OrderNumber
+                   });
+                return View(saleOrders);
+            }
+
         }
 
         public ActionResult Create()
@@ -58,7 +75,7 @@ namespace MVCCIMotorsForms.Controllers
                 SaleOrderId = saleOrder.SalesOrderId,
                 OrderDate = saleOrder.OrderDate,
                 PersonId = saleOrder.PersonId,
-                OrderNumber = saleOrder.OrderNumber.Trim();
+                OrderNumber = saleOrder.OrderNumber.Trim()
             };
 
             return View(viewModel);

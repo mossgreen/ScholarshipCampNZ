@@ -16,6 +16,7 @@
         <td>Address 2</td>
         <td>Phone Number</td>
         <td>Suburb</td>
+        <td>Orders</td>
         <th>&nbsp</th>
     </tr>
     @foreach (var ct in Model)
@@ -28,6 +29,7 @@
             <td>@ct.Address2</td>
             <td>@ct.PhoneNumber</td>
             <td>@ct.SelectedSuburb</td>
+            <td><a href="saleOrder/index/?id=@ct.CustomerId">Orders</a></td>
             <td> <a href="/Customer/Edit/?customerId=@ct.CustomerId">Edit</a>
                 |
                 <a href="/Customer/Delete/?id=@ct.CustomerId">Delete</a>
