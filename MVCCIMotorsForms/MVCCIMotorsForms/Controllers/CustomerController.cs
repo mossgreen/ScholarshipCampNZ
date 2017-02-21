@@ -22,12 +22,46 @@ namespace MVCCIMotorsForms.Controllers
                     LastName = c.LastName,
                     Address1 = c.Address1,
                     Address2 = c.Address2,
+                    PhoneNumber = c.PhoneNumber,
                     SelectedSuburb = c.SuburbId.ToString()
                 })
                 .ToList();
-
-            
             return View(customers);
+        }
+
+        public ActionResult Create()
+        {
+            var viewModel = new CustomerViewModel
+            {
+                SuburbTypes = db.SuburbTypes.ToList()
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(CustomerViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.SuburbTypes = db.SuburbTypes.ToList();
+                return View(viewModel);
+            }
+
+            var customer = new Person
+            {
+                PersonId = viewModel.CustomerId,
+                PersonTypeId = 4,
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                Address1 = viewModel.Address1,
+                Address2 = viewModel.Address2,
+                PhoneNumber = viewModel.PhoneNumber,
+                SuburbId = 3
+            };
+
+            db.People.Add(customer);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Customer");
         }
     }
 }

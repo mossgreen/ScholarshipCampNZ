@@ -231,6 +231,7 @@
     <Content Include="Views\Home\EditStaffMember.cshtml" />
     <Content Include="Views\Home\AddStaffMember.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
