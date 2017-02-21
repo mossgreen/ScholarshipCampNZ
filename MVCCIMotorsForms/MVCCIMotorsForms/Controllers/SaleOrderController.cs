@@ -48,5 +48,20 @@ namespace MVCCIMotorsForms.Controllers
 
             return RedirectToAction("Index", "SaleOrder");
         }
+
+        public ActionResult Edit(int id)
+        {
+            var saleOrder = db.SalesOrders.Find(id);
+
+            var viewModel = new SaleOrderViewModel
+            {
+                SaleOrderId = saleOrder.SalesOrderId,
+                OrderDate = saleOrder.OrderDate,
+                PersonId = saleOrder.PersonId,
+                OrderNumber = saleOrder.OrderNumber.Trim();
+            };
+
+            return View(viewModel);
+        }
     }
 }

@@ -1,0 +1,44 @@
+﻿@model MVCCIMotorsForms.Models.SaleOrderViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Edit Sale Orders</h2>
+@using (Html.BeginForm())
+{
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.OrderDate)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.OrderDate)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.PersonId)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PersonId)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.OrderNumber)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.OrderNumber)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="submit" />
+        </td>
+    </tr>
+
+
+}
