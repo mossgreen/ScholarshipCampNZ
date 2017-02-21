@@ -1,0 +1,28 @@
+﻿@model List<MVCCIMotorsForms.Models.StaffClass>
+@{
+    ViewBag.Title = "StaffManagement";
+}
+
+<h2>StaffManagement</h2>
+
+<table class="table table-bordered table-striped">
+
+    <tr>
+        <td>Staff Id</td>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Address1</th>
+        <th>&nbsp</th>
+    </tr>
+    @foreach( var sm in Model)
+    {
+        <tr>
+            <td>@sm.StaffId</td>
+            <td>@sm.FirstName</td>
+            <td>@sm.LastName</td>
+            <td>@sm.Address1</td>
+            
+            <td><a href="/Home/EditStaffMember?staffId=@sm.StaffId">Edit</a></td>
+        </tr>
+    }
+</table>

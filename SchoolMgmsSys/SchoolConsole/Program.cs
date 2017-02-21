@@ -23,14 +23,24 @@ namespace SchoolConsole
             // DeleteAStudentById();
             //DeleteACourseById();
 
-            //Ability to Update a Students  record
 
             /*
-                input student's Id, or name, use "contains" linq method, return the student if exist, select which property to change, then update the db
+             *  Ability to Update a Students  record
+
+                input student's Id, or name, use "contains" linq method, return the student if exist, 
+                select the property to be changed, 
+                let user type in the content that will update
+                then add to the db
+                save changes
              */
 
             /*
              Change Course a Instructor is teaching
+
+            loop the instuctors, let user to type in a instructor Id to get the instructor
+            loop the instructor's courses, let user type in a course ID
+
+            
              
              */
         }

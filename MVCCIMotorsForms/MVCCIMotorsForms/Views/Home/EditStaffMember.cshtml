@@ -1,0 +1,55 @@
+﻿@model MVCCIMotorsForms.Models.StaffClass
+@{
+    ViewBag.Title = "EditStaffMember";
+}
+
+
+<h2>EditStaffMember</h2>
+<table>
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.FirstName)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.FirstName)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.LastName)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.LastName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Salary)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Salary)
+            </td>
+        </tr>
+        <tr>
+            <td>
+@Html.LabelFor(m => m.Address1)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Address1)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" />
+            </td>
+        </tr>
+             
+        
+    }
+
+</table>
+
+

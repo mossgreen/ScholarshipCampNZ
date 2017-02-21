@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d7b3d8b53314d8abc3c758a88320d35" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Person" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PersonType" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Product" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductCatagory" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SalesOrder" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SalesOrderDetail" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SuburbType" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Person_PersonType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Person_SuburbType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SalesOrder_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SalesOrderDetail_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stock_StockCatagory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SalesOrderDetail_SalesOrder" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
