@@ -37,7 +37,8 @@ namespace MVCCIMotorsForms.Controllers
             IC_MotersEntities db = new IC_MotersEntities();
 
 
-            var stafflist = db.People.Where(x => x.PersonTypeId != 4)
+            var stafflist = db.People
+                .Where(x => x.PersonTypeId != 4)
                                     .Select(x =>
                                             new StaffClass
                                             {
@@ -45,7 +46,7 @@ namespace MVCCIMotorsForms.Controllers
                                                 FirstName = x.FirstName,
                                                 LastName = x.LastName,
                                                 Address1 = x.Address1,
-                                                Address2 =x.Address2,
+                                                Address2 = x.Address2,
                                             })
                                         .ToList();
 
