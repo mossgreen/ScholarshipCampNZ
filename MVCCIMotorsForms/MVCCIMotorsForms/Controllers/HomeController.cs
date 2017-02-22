@@ -89,5 +89,44 @@ namespace MVCCIMotorsForms.Controllers
             db.SaveChanges();
             return RedirectToAction("StaffManagement", "Home");
         }
+
+        public ActionResult CreateStaffMember()
+        {
+            IC_MotersEntities db = new IC_MotersEntities();
+            var viewModel = new StaffClass
+            {
+                SuburbTypes = db.SuburbTypes.ToList()
+            };
+
+        return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateStaffMember(StaffClass viewModel)
+        {
+            IC_MotersEntities db = new IC_MotersEntities();
+
+            if (!ModelState.IsValid)
+            {
+                viewModel.SuburbTypes = db.SuburbTypes;
+                return View( viewModel);
+            }
+            var staff = new Person
+            {
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                Salary = viewModel.Salary,
+                Address1 = viewModel.Address1,
+                Address2 = viewModel.Address2,
+                SuburbId = viewModel.SuburbId,
+                PhoneNumber = viewModel.PhoneNumber,
+                PersonTypeId = 3
+            };
+
+            db.People.Add(staff);
+            db.SaveChanges();
+
+            return RedirectToAction("StaffManagement", "Home");
+        }
     }
 }
