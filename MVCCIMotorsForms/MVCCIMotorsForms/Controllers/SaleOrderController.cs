@@ -12,7 +12,7 @@ namespace MVCCIMotorsForms.Controllers
 
         IC_MotersEntities db = new IC_MotersEntities();
         // GET: Order
-        public ActionResult Index(int id)
+        public ActionResult Index(int id= 0)
         {
             if (id == 0)
             {
@@ -57,7 +57,6 @@ namespace MVCCIMotorsForms.Controllers
                 PersonId = viewModel.PersonId,
                 OrderNumber = viewModel.OrderNumber
             };
-
 
             db.SalesOrders
                 .Add(saleorder);

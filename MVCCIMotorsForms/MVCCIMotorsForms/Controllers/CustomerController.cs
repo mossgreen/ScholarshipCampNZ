@@ -10,28 +10,37 @@ namespace MVCCIMotorsForms.Controllers
     public class CustomerController : Controller
     {
         IC_MotersEntities db = new IC_MotersEntities();
-        // GET: Customer
-        public ActionResult Index()
+
+        public ActionResult Index( string query = null)
         {
             var customers = db.People
-                .Where(c => c.PersonTypeId == 4)
-                .Select(c => new CustomerViewModel
-                {
-                    CustomerId = c.PersonId,
-                    FirstName = c.FirstName,
-                    LastName = c.LastName,
-                    Address1 = c.Address1,
-                    Address2 = c.Address2,
-                    PhoneNumber = c.PhoneNumber,
-                    SelectedSuburb = c.SuburbId.ToString()
-                })
-                .ToList();
-            return View(customers);
+                   .Where(c => c.PersonTypeId == 4)
+                   .ToList();
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+
+                query = query.Trim();
+                customers = customers
+                     .Where(c =>
+                             c.FirstName.Contains(query) ||
+                             c.LastName.Contains(query) ||
+                             c.Address1.Contains(query)  ||
+                             c.PhoneNumber.Contains(query))
+                    .ToList();
+            }
+
+            var ViewModel = new CustomerViewModel
+            {
+                Customers  = customers,
+                SearchTerm = query,
+            };
+            return View(ViewModel);
         }
 
         public ActionResult Create()
         {
-            var viewModel = new CustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 SuburbTypes = db.SuburbTypes.ToList()
             };
@@ -39,7 +48,7 @@ namespace MVCCIMotorsForms.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CustomerViewModel viewModel)
+        public ActionResult Create(CustomerFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +58,7 @@ namespace MVCCIMotorsForms.Controllers
 
             var customer = new Person
             {
-                PersonId = viewModel.CustomerId,
+               // PersonId = viewModel.CustomerId,
                 PersonTypeId = 4,
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
@@ -67,10 +76,18 @@ namespace MVCCIMotorsForms.Controllers
         public ActionResult Delete(int id)
         {
             var customer = db.People.Find(id);
+
+
+            //before delete people, we should first delete the order details, then orders
             db.People.Remove(customer);
             db.SaveChanges();
 
             return RedirectToAction("Index", "Customer");
+        }
+
+        public ActionResult Search(CustomerViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Customer", new { query = viewModel.SearchTerm });
         }
     }
 }

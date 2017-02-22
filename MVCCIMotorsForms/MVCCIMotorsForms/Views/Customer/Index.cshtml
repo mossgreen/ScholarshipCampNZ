@@ -1,10 +1,19 @@
-﻿@model IEnumerable<MVCCIMotorsForms.Models.CustomerViewModel>
+﻿@model MVCCIMotorsForms.Models.CustomerViewModel
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>List all customers here</h2>
 
+@using (Html.BeginForm("Search", "Customer"))
+{
+    <div class="form-group">
+        <div id="searchGigs" class="input-group">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Search " })
+          
+        </div>
+    </div>
+}
 
 <a href="/Customer/Create">Create</a>
 <table class="table table-bordered table-striped">
@@ -19,20 +28,20 @@
         <td>Orders</td>
         <th>&nbsp</th>
     </tr>
-    @foreach (var ct in Model)
+    @foreach (var ct in Model.Customers)
     {
         <tr>
-            <td>@ct.CustomerId</td>
+            <td>@ct.PersonId</td>
             <td>@ct.FirstName</td>
             <td>@ct.LastName</td>
             <td>@ct.Address1</td>
             <td>@ct.Address2</td>
             <td>@ct.PhoneNumber</td>
-            <td>@ct.SelectedSuburb</td>
-            <td><a href="saleOrder/index/?id=@ct.CustomerId">Orders</a></td>
-            <td> <a href="/Customer/Edit/?customerId=@ct.CustomerId">Edit</a>
+            <td>@ct.SuburbId</td>
+            <td><a href="saleOrder/index/?id=@ct.PersonId">Orders</a></td>
+            <td> <a href="/Customer/Edit/?customerId=@ct.PersonId">Edit</a>
                 |
-                <a href="/Customer/Delete/?id=@ct.CustomerId">Delete</a>
+                <a href="/Customer/Delete/?id=@ct.PersonId">Delete</a>
             </td>
 
         </tr>

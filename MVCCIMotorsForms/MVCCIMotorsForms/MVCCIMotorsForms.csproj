@@ -151,6 +151,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ICMotorsDb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerFormViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\SaleOrderViewModel.cs" />
     <Compile Include="Models\StaffClass.cs" />
