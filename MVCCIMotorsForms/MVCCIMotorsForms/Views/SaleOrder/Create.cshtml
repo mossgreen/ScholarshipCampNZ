@@ -1,0 +1,30 @@
+﻿@model MVCCIMotorsForms.Models.SaleOrderViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(m => m.SaleOrderId)
+
+    if (Model.PersonId != null)
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.PersonId)
+            @Html.TextBoxFor(m => m.PersonId)
+            @Html.ValidationMessageFor(m => m.PersonId)
+        </div>
+    }
+    <div class="form-group">
+        @Html.LabelFor(m => m.OrderNumber)
+        @Html.TextBoxFor(m => m.OrderNumber)
+        @Html.ValidationMessageFor(m => m.OrderNumber)
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg"> Save</button>
+
+}
+
