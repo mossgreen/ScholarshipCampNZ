@@ -72,6 +72,28 @@ namespace MVCCIMotorsForms.Controllers
             return RedirectToAction("Index", "Customer");
         }
 
+        public ActionResult Edit(int id)
+        {
+            var person = db.People.Find(id);
+
+            if (person == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                CustomerId = person.PersonTypeId,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Address1 = person.LastName,
+                Address2 = person.LastName,
+                PhoneNumber = person.PhoneNumber,
+                SuburbId = person.SuburbId,
+                SuburbTypes = db.SuburbTypes
+            };
+
+            return View(viewModel);
+        }
+
         public ActionResult Delete(int id)
         {
             var customer = db.People.Find(id);

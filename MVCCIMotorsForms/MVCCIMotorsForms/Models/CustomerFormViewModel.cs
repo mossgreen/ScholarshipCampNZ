@@ -28,7 +28,7 @@ namespace MVCCIMotorsForms.Models
 
         [Required]
         [Display(Name = "Suburb")]
-        public string SelectedSuburb { get; set; }
+        public int SuburbId { get; set; }
 
         public string SearchTerm { get; set; }
 

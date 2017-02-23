@@ -238,6 +238,7 @@
     <Content Include="Views\SaleOrder\Index.cshtml" />
     <Content Include="Views\SaleOrder\Create.cshtml" />
     <Content Include="Views\Home\CreateStaffMember.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
     <None Include="Views\SaleOrder\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -29,9 +29,9 @@
         @Html.TextBoxFor(m => m.Address2)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.SelectedSuburb)
-        @Html.TextBoxFor(m => m.SelectedSuburb)
-        @Html.ValidationMessageFor(m => m.SelectedSuburb)
+        @Html.LabelFor(m => m.SuburbId)
+        @Html.TextBoxFor(m => m.SuburbId)
+        @Html.ValidationMessageFor(m => m.SuburbId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.PhoneNumber)
@@ -39,6 +39,6 @@
         @Html.ValidationMessageFor(m => m.PhoneNumber)
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg"> Save</button>
+    <button type="submit" class="btn btn-primary"> Save</button>
 }
 
