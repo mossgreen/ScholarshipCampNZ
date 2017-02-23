@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="divbox">
+    <table id="courselist" class="table table-bordered table-striped">
+        <tr>
+            <th>Course Id</th>
+            <th>Course Name</th>
+            <th>&nbsp</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+    $("#divbox").ready(function () {
+
+
+        $.ajax({
+            type: "Get",
+            url: "/Home/GetCourses",
+            datatype: "Json",
+            success: function (result) {
+                console.log(result);
+                $.each(result, function (i, value) {
+                    
+                    var tableRow =
+                    '<tr>' +
+                     '<td>' + i + '</td>' +
+                        '<td>' + value.id + '</td>' +
+                        '<td>' + value.Title + '</td>' +
+                        '<td><input type="button" class="buttonclass btn btn-primary" value="click me" js-courseId="'+value.id+'"' +
+                        'C/></td>' +
+                    ' </tr>';
+                    $('#courselist').append(tableRow);
+
+                    $(".buttonclass").click().text();
+                });
+
+            }
+        });
+
+        
+
+    });
+</script>
