@@ -10,8 +10,9 @@
     <div class="form-group">
         <div id="searchGigs" class="input-group">
             @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Search " })
-          
         </div>
+        
+        <button class="btn btn-primary" type="submit">Search</button>
     </div>
 }
 
@@ -38,7 +39,11 @@
             <td>@ct.Address2</td>
             <td>@ct.PhoneNumber</td>
             <td>@ct.SuburbId</td>
-            <td><a href="../saleOrder/index/?id=@ct.PersonId">Orders</a></td>
+            <td>
+                <a href="../saleOrder/create/?id=@ct.PersonId">Create</a>
+                |
+                <a href="../saleOrder/index/?id=@ct.PersonId">View</a>
+            </td>
             <td> <a href="/Customer/Edit/?customerId=@ct.PersonId">Edit</a>
                 |
                 <a href="/Customer/Delete/?id=@ct.PersonId">Delete</a>

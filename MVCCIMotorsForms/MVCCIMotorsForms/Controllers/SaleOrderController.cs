@@ -43,9 +43,14 @@ namespace MVCCIMotorsForms.Controllers
 
         }
 
-        public ActionResult Create()
-        {
-            return View();
+        public ActionResult Create(int id = 0)
+        { 
+            var viewModel = new SaleOrderViewModel
+            {
+                PersonId = id
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

@@ -58,7 +58,6 @@ namespace MVCCIMotorsForms.Controllers
 
             var customer = new Person
             {
-               // PersonId = viewModel.CustomerId,
                 PersonTypeId = 4,
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
