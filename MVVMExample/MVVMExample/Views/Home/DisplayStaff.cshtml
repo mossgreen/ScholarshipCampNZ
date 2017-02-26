@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "DisplayStaff";
+}
+
+<h2>DisplayStaff</h2>
+
+<div id="injectHere">
+
+
+</div>
+
+<script>
+    $.ajax({
+        url: '/Home/GetStaffListJQuery',
+        type: 'get',
+        success: function (result) {
+            $('#injectHere').html(result)
+        }
+    })
+</script>
