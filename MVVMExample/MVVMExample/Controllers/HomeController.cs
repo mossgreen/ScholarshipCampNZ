@@ -38,13 +38,23 @@ namespace MVVMExample.Controllers
 
         public ActionResult GetStaffListJQuery()
         {
-            var staffList = db.People.Where(x => x.PersonTypeId != 4).Select(x => new StaffListModel { FirstName = x.FirstName, LastName = x.LastName }).ToList();
+            var staffList = db.People
+                .Where(x => x.PersonTypeId != 4)
+                .Select(x => 
+                    new StaffListModel { FirstName = x.FirstName, LastName = x.LastName })
+                .ToList();
+
             return View(staffList);
         }
 
         public ActionResult GetStaffListKnockOutJS()
         {
-            var staffList = db.People.Where(x => x.PersonTypeId != 4).Select(x => new StaffListModel { FirstName = x.FirstName, LastName = x.LastName }).ToList();
+            var staffList = db.People
+                .Where(x => x.PersonTypeId != 4)
+                .Select(x =>
+                    new StaffListModel { FirstName = x.FirstName, LastName = x.LastName })
+                .ToList();
+
             return Json(staffList,JsonRequestBehavior.AllowGet);
         }
         public ActionResult DisplayStaffKnockoutJS()
