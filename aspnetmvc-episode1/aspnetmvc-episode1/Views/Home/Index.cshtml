@@ -22,36 +22,60 @@
 
 <h3>Telerik UI for ASP.NET MVC PanelBar</h3>
 <br />
-	<ul id="panelbar">
-		<li class="k-state-active">
-			<span class="k-link k-state-selected">Getting Started</span>
-			<div style="padding: 10px;">
-				<p style="padding:0 1em">ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-				enables a clean separation of concerns and that gives you full control over markup
-				for enjoyable, agile development. ASP.NET MVC includes many features that enable
-				fast, TDD-friendly development for creating sophisticated applications that use
-				the latest web standards.
-				<a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a></p>
-			</div>
-		</li>
-		<li>
-			Add NuGet packages and jump-start your coding
-			<div>
-				<p style="padding:0 1em">NuGet makes it easy to install and update free libraries and tools.
+<ul id="panelbar">
+    <li class="k-state-active">
+        <span class="k-link k-state-selected">Getting Started</span>
+        <div style="padding: 10px;">
+            <p style="padding:0 1em">ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and that gives you full control over markup
+                for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                fast, TDD-friendly development for creating sophisticated applications that use
+                the latest web standards.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a></p>
+        </div>
+    </li>
+    <li>
+        Add NuGet packages and jump-start your coding
+        <div>
+            <p style="padding:0 1em">NuGet makes it easy to install and update free libraries and tools.
                 <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a></p>
-			</div>
-		</li>
-		<li>
-			Find Web Hosting
-			<div>
-				<p style="padding:0 1em">You can easily find a web hosting company that offers the right mix of features
+        </div>
+    </li>
+    <li>
+        Find Web Hosting
+        <div>
+            <p style="padding:0 1em">You can easily find a web hosting company that offers the right mix of features
                 and price for your applications.
                 <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a></p>
-			</div>
-		</li>
-	</ul>
+        </div>
+    </li>
+</ul>
+<ul id="twitter"></ul>
 <script>
     $(function () {
         $("#panelbar").kendoPanelBar();
     });
+
+
+    var ds = new kendo.data.DataSource({
+        data: [
+            { text: 'Tweet 1', id: 1 },
+            { text: 'Tweet 2', id: 2 },
+            { text: 'Tweet 3', id: 3 },
+            { text: 'Tweet 4', id: 4 },
+            { text: 'Tweet 5', id: 5 }
+        ]
+    });
+
+    $(function () {
+        $('#twitter').kendoListView({
+            dataSource: ds,
+            template: '<li>#: text #</li>'
+        });
+    });
+
+    //greater than or equal
+    ds.filter({ field: "id", operator: "gte", value: 3 });
+    ds.sort({ field: "id", dir: "asc" });
+    ds.add({ text: "Tweet moss", id: 6 });
 </script>
