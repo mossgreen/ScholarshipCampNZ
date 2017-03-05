@@ -7,20 +7,30 @@
       {
           c.Bound(p => p.ProductId);
           c.Bound(p => p.ProductName);
-          c.Bound(p => p.Color);
-          c.Bound(p => p.ModelId);
-          //c.Command(cmd =>
-          //{
-          //    cmd.Edit();
-          //    cmd.Destroy();
-          //}).Width(220);
+          //c.Bound(p => p.Color);
+          //c.Bound(p => p.ModelId);
+          c.Command(cmd =>
+          {
+              cmd.Edit();
+              cmd.Destroy();
+          }).Title("Commands").Width(220);
       })
+      .ToolBar(toolbar => toolbar.Create()) // The "create" command adds new data items.
       .Editable(editable => editable.Mode(GridEditMode.InLine))
       .Pageable()
-      .DataSource(dataSource => dataSource
-            .Server()
-            .Model(model => model.Id(p => p.ProductId))
-        )
+      .DataSource(dataSource =>
+                dataSource.Ajax()
+                  .Model(model =>
+                  {
+                      model.Id(product => product.ProductId); // Specify the property which is the unique identifier of the model.
+                      model.Field(product => product.ProductId).Editable(false); // Make the ProductID property not editable.
+                  })
+                  .Create(create => create.Action("Products_Create", "Home")) // Action invoked when the user saves a new data item.
+                  .Read(read => read.Action("Products_Read", "Home"))  // Action invoked when the grid needs data.
+                  .Update(update => update.Action("Products_Update", "Home"))  // Action invoked when the user saves an updated data item.
+                  .Destroy(destroy => destroy.Action("Products_Destroy", "Home")) // Action invoked when the user removes a data item.
+            )
+            .Pageable()
 
 )
 
