@@ -23,22 +23,8 @@ namespace KendoUIDemo.Controllers
                        Color = p.Color,
                         ModelId = p.ProductModelID
                     });
-            ViewBag.products = viewModel;
-            return View();
+            return View(viewModel);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@using System.Collections
+@model IEnumerable<KendoUIDemo.ViewModels.ProductViewModel>
 
-@(Html.Kendo().Grid((IEnumerable<KendoUIDemo.ViewModels.ProductViewModel>)ViewBag.products)
+@(Html.Kendo().Grid(Model)
       .Name("mossgrid")
       .Columns(c =>
       {
