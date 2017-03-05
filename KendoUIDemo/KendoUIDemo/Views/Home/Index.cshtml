@@ -1,0 +1,22 @@
+﻿
+@(Html.Kendo().Grid((IEnumerable<KendoUIDemo.Models.Product>)ViewBag.Products) //Bind the grid to ViewBag.Products
+            .Name("grid")
+            .Columns(columns =>
+            {
+                //Create a column bound to the ProductID property.
+                columns.Bound(product => product.ProductID);
+                //Create a column bound to the ProductName property.
+                columns.Bound(product => product.ProductName);
+                //Create a column bound to the UnitsInStock property.
+                columns.Bound(product => product.UnitsInStock);
+            })
+            .Pageable() //Enable the paging.
+            .Sortable() //Enable the sorting.
+      )
+
+<script>
+    $(function() {
+        //Notice that the Name() of the Grid is used to get its client-side instance.
+        var grid = $("#grid").data("kendoGrid");
+    });
+</script>
