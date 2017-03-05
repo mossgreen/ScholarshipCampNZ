@@ -20,6 +20,8 @@
         .Editable(editable => editable.Mode(GridEditMode.InLine)) // Use inline editing mode
         .Pageable()
         .Sortable() // Enable sorting
+            .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+
         .Scrollable(s => s.Height(600)) //Remove the default height.
         .DataSource(dataSource =>
 
