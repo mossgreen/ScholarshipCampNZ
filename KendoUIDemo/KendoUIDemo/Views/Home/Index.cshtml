@@ -1,17 +1,23 @@
 ﻿
 @(Html.Kendo().Grid((IEnumerable<KendoUIDemo.Models.Product>)ViewBag.Products) //Bind the grid to ViewBag.Products
-            .Name("grid")
-            .DataSource(dataSource => dataSource
+        .Name("grid")
+        .Columns(columns =>
+              {
+                  //Create a column bound to the ProductID property.
+                  columns.Bound(product => product.ProductID);
+                  //Create a column bound to the ProductName property.
+                  columns.Bound(product => product.ProductName);
+                  //Create a column bound to the UnitsInStock property.
+                  columns.Bound(product => product.UnitsInStock);
+              })
+        .Pageable()
+        .Scrollable(s => s.Height(600)) //Remove the default height.
+        .DataSource(dataSource => dataSource
             .Ajax() //Or .Server()
             .Read(read => read.Action("Products_Read", "Home"))
-            .Aggregates(aggregates =>
-            {
-                aggregates.Add(product => product.UnitsInStock).Min().Max().Count();
-                aggregates.Add(product => product.UnitsOnOrder).Average();
-                aggregates.Add(product => product.ProductName).Count();
-                aggregates.Add(product => product.UnitPrice).Sum();
-            })
-    )
+            .PageSize(10)
+        )
+        
 )
 
 <script>
