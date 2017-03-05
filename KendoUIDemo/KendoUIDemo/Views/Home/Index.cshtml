@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container-fluid placeholders">
+    <div class="row">
+        <div class="col-xs-4 col-md-2 placeholder">
+            <img class="img-responsive " alt="200x200" src="Images/200.png">
+        </div>
+        <div class="col-xs-10 col-md-3">
+            <h2>Lorem ipsum dolor sit amet...</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book.
+            </p>
+
+            <p>
+                <button class="textButton k-primary">Primary Button</button>
+            </p>
+        </div>
+
+        <div class="col-xs-10 col-md-3">
+            <h2>&nbsp;</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                <button class="textButton">Button</button>
+            </p>
+
+        </div>
+        <div class="col-xs-10 col-md-3">
+            <h2>&nbsp;</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book.
+            </p>
+
+            <p>
+                <button class="textButton">Button</button>
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+			<div id="grid"></div>
+		</div>
+    </div>
+</div>
+<script>
+	$(document).ready(function() {
+	        
+        $(".textButton").kendoButton();
+        
+        $("#grid").kendoGrid({
+            dataSource: {
+                type: "odata",
+                transport: {
+                    read: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                },
+                schema: {
+                    model: {
+                        fields: {
+                            OrderID: { type: "number" },
+                            Freight: { type: "number" },
+                            ShipName: { type: "string" },
+                            OrderDate: { type: "date" },
+                            ShipCity: { type: "string" }
+                        }
+                    }
+                },
+                pageSize: 20
+            },
+            height: 550,
+            filterable: true,
+            sortable: true,
+            pageable: true,
+            columns: [{
+                    field:"OrderID",
+                    filterable: false
+                },
+                "Freight",
+                {
+                    field: "OrderDate",
+                    title: "Order Date",
+                    format: "{0:MM/dd/yyyy}"
+                }, {
+                    field: "ShipName",
+                    title: "Ship Name"
+                }, {
+                    field: "ShipCity",
+                    title: "Ship City"
+                }
+            ]
+        });
+    });
+</script>
