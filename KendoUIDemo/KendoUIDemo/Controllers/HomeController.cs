@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KendoUIDemo.Models;
+using KendoUIDemo.ViewModels;
 
 namespace KendoUIDemo.Controllers
 {
@@ -10,8 +12,18 @@ namespace KendoUIDemo.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-
+            var context = new AWEntities();
+            var viewModel = context
+                .Product
+                .Select(p =>
+                    new ProductViewModel
+                    {
+                       ProductId = p.ProductID,
+                       ProductName = p.Name,
+                       Color = p.Color,
+                        ModelId = p.ProductModelID
+                    });
+            ViewBag.products = viewModel;
             return View();
         }
 
