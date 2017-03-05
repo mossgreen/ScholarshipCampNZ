@@ -11,6 +11,7 @@
                   columns.Bound(product => product.UnitsInStock);
               })
         .Pageable()
+        .Sortable() // Enable sorting
         .Scrollable(s => s.Height(600)) //Remove the default height.
         .DataSource(dataSource => dataSource
             .Ajax() //Or .Server()
