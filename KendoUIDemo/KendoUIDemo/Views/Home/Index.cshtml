@@ -1,21 +1,21 @@
 ﻿
 @(Html.Kendo().Grid((IEnumerable<KendoUIDemo.Models.Product>)ViewBag.Products) //Bind the grid to ViewBag.Products
             .Name("grid")
-            .Columns(columns =>
+            .DataSource(dataSource => dataSource
+            .Ajax() //Or .Server()
+            .Read(read => read.Action("Products_Read", "Home"))
+            .Aggregates(aggregates =>
             {
-                //Create a column bound to the ProductID property.
-                columns.Bound(product => product.ProductID);
-                //Create a column bound to the ProductName property.
-                columns.Bound(product => product.ProductName);
-                //Create a column bound to the UnitsInStock property.
-                columns.Bound(product => product.UnitsInStock);
+                aggregates.Add(product => product.UnitsInStock).Min().Max().Count();
+                aggregates.Add(product => product.UnitsOnOrder).Average();
+                aggregates.Add(product => product.ProductName).Count();
+                aggregates.Add(product => product.UnitPrice).Sum();
             })
-            .Pageable() //Enable the paging.
-            .Sortable() //Enable the sorting.
-      )
+    )
+)
 
 <script>
-    $(function() {
+    $(function () {
         //Notice that the Name() of the Grid is used to get its client-side instance.
         var grid = $("#grid").data("kendoGrid");
     });
