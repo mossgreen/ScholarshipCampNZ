@@ -1,41 +1,54 @@
 ﻿
 <div id="grid"></div>
 <script>
-    $("#grid").kendoGrid({
-        height: 400,
-        columns: [
-            {field: "ProductName"},
-            {field: "UnitsInStock"},
-        ],
-        dataSource: {
-            type: "aspnetmvc-ajax", 
-            transport: {
-                read: {
-                    url: "Products_Read",
-                    dataType: "json"
-                }
-			},
-            schema: {
-                data: "Data",
-                model: {
-                    id: "ProductID",
-					fields: {
-						ProductID: { type: "number"},
-                        "ProductName": {
-							type: "string",
-							validation: {required: true}
-						},
-						"UnitsInStock": {
-							type: "number"
-						}
-					}
-                }
-            }, 
-			serverPaging: true,
-			serverSorting: true,
-			serverSorting: true,
-        },
-        scrollable: true
-    })
+
+
+    $(document).ready(function() {
+
+       var  dataSource = new kendo.data.DataSource({
+                type: "aspnetmvc-ajax",
+                batch: true,
+                pageSize: 10,
+                transport: {
+                    read: {
+                        url: "Products_Read",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    model: {
+                        id: "ProductID",
+                        fields: {
+                            ProductID: { editable: false, nullable: true },
+                            ProductName: { validation: { required: true } },
+                            UnitPrice: { type: "number", validation: { required: true, min: 1 } },
+                            Discontinued: { type: "boolean" },
+                            UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                        }
+                    }
+                },
+                serverPaging: true,
+                serverSorting: true,
+                serverSorting: true,
+       });
+
+
+       $("#grid").kendoGrid({
+           dataSource: dataSource,
+           height: 400,
+           columns: [
+               { field: "ProductId" },
+               { field: "ProductName" },
+               { field: "UnitsInStock" },
+           ],
+           scrollable: true
+       })
+
+
+
+    });
+
+
 
 </script>
