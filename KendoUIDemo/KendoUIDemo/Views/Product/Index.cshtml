@@ -1,0 +1,41 @@
+﻿
+<div id="grid"></div>
+<script>
+    $("#grid").kendoGrid({
+        height: 400,
+        columns: [
+            {field: "ProductName"},
+            {field: "UnitsInStock"},
+        ],
+        dataSource: {
+            type: "aspnetmvc-ajax", 
+            transport: {
+                read: {
+                    url: "Products_Read",
+                    dataType: "json"
+                }
+			},
+            schema: {
+                data: "Data",
+                model: {
+                    id: "ProductID",
+					fields: {
+						ProductID: { type: "number"},
+                        "ProductName": {
+							type: "string",
+							validation: {required: true}
+						},
+						"UnitsInStock": {
+							type: "number"
+						}
+					}
+                }
+            }, 
+			serverPaging: true,
+			serverSorting: true,
+			serverSorting: true,
+        },
+        scrollable: true
+    })
+
+</script>

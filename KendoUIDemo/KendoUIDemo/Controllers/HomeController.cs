@@ -108,5 +108,6 @@ namespace KendoUIDemo.Controllers
             // Return the removed product. Also return any validation errors.
             return Json(new[] { product }.ToDataSourceResult(request, ModelState));
         }
+
     }
 }

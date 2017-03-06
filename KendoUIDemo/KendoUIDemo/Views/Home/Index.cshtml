@@ -1,4 +1,5 @@
 ﻿
+
 @(Html.Kendo().Grid((IEnumerable<KendoUIDemo.Models.Product>)ViewBag.Products) //Bind the grid to ViewBag.Products
         .Name("grid")
         .Columns(columns =>
@@ -20,6 +21,8 @@
         .Editable(editable => editable.Mode(GridEditMode.InLine)) // Use inline editing mode
         .Pageable()
         .Sortable() // Enable sorting
+        .Selectable()
+
             .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
 
         .Scrollable(s => s.Height(600)) //Remove the default height.
@@ -40,11 +43,5 @@
 
         )
 
-)
+      )
 
-<script>
-    $(function () {
-        //Notice that the Name() of the Grid is used to get its client-side instance.
-        var grid = $("#grid").data("kendoGrid");
-    });
-</script>
