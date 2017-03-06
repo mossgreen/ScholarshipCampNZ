@@ -1,68 +1,92 @@
 ﻿
 <div id="grid"></div>
+
+<span> Multi Select Demo</span>
+<select id="multiselect" multiple></select>
+
 <script>
-    $("#grid").kendoGrid({
-        height: 400,
-        columns: [
-            {field: "ProductName"},
-            {field: "SupplierID"},
-            {field: "CategoryID"},
-            {field: "QuantityPerUnit"},
-            {field: "UnitPrice"},
-            {field: "UnitsInStock"},
-            {field: "UnitsOnOrder"},
-            {field: "ReorderLevel"},
-            {field: "Discontinued"},
-            {command: [ "edit" , "destroy"], width: 180 }
-        ],
-        toolbar: ["create"],
-        dataSource: {
-            type: "aspnetmvc-ajax", 
+
+    $(document).ready(function() {
+        var dataSource = new kendo.data.DataSource({
+            type: "aspnetmvc-ajax",
+            pageSize: 10,
             transport: {
                 read: {
-                     url: "Products_Read"
-                }, 
-				create: { 
-					url: "Products_Create"
-				},
-				update: { 
-					url: "Products_Update"
-				},
-				destroy: { 
-					url: "Products_Destroy"
-				}
-			},
+                    url: "Products_Read"
+                },
+                create: {
+                    url: "Products_Create"
+                },
+                update: {
+                    url: "Products_Update"
+                },
+                destroy: {
+                    url: "Products_Destroy"
+                }
+            },
             schema: {
                 data: "Data",
                 model: {
                     id: "ProductID",
-					fields: {
-						ProductID: { type: "number"},
-						ProductName: { type: "string"},
-						SupplierID: { type: "number"},
-						CategoryID: { type: "number"},
-						QuantityPerUnit: { type: "string"},
-						UnitPrice: { type: "number"},
-						UnitsInStock: { type: "number"},
-						UnitsOnOrder: { type: "number"},
-						ReorderLevel: { type: "number"},
-						Discontinued: { type: "boolean"}
-					}
+                    fields: {
+                        ProductID: { type: "number" },
+                        ProductName: { type: "string" },
+                        SupplierID: { type: "number" },
+                        CategoryID: { type: "number" },
+                        QuantityPerUnit: { type: "string" },
+                        UnitPrice: { type: "number" },
+                        UnitsInStock: { type: "number" },
+                        UnitsOnOrder: { type: "number" },
+                        ReorderLevel: { type: "number" },
+                        Discontinued: { type: "boolean" }
+                    }
                 }
-            }, 
-			serverPaging: true,
-			serverSorting: true,
-			serverSorting: true,
-        },
-        columnMenu: true,
-        editable: "inline",
-        pageable: true,
-        navigatable: true,
-        sortable: {
-            mode: "single"
-        },
-        filterable: true,
-        scrollable: true
-    })
+            },
+            serverPaging: true,
+            serverSorting: true,
+            serverSorting: true,
+        });
+
+
+        $("#grid").kendoGrid({
+            height: 600,
+            columns: [
+                { field: "ProductName" },
+                { field: "UnitPrice" },
+                { field: "UnitsInStock" },
+                { field: "UnitsOnOrder" },
+                { field: "Discontinued" },
+                { command: ["edit", "destroy"], width: 220 }
+            ],
+            toolbar: ["create"],
+            dataSource: dataSource,
+            columnMenu: true,
+            editable: "inline",
+            pageable: true,
+            navigatable: true,
+            sortable: {
+                mode: "single"
+            },
+            filterable: true,
+            scrollable: true
+        })
+
+
+        $("#multiselect").kendoMultiSelect({
+            dataTextField: "ProductName",
+            dataValueField: "ProductID",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "jsonp",
+                        url: "http://demos.telerik.com/kendo-ui/service/Products"
+                    }
+                }
+            }
+        });
+
+
+    });
+
 
 </script>
