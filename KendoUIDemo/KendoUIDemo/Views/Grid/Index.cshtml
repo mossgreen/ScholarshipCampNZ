@@ -1,0 +1,68 @@
+﻿
+<div id="grid"></div>
+<script>
+    $("#grid").kendoGrid({
+        height: 400,
+        columns: [
+            {field: "ProductName"},
+            {field: "SupplierID"},
+            {field: "CategoryID"},
+            {field: "QuantityPerUnit"},
+            {field: "UnitPrice"},
+            {field: "UnitsInStock"},
+            {field: "UnitsOnOrder"},
+            {field: "ReorderLevel"},
+            {field: "Discontinued"},
+            {command: [ "edit" , "destroy"], width: 180 }
+        ],
+        toolbar: ["create"],
+        dataSource: {
+            type: "aspnetmvc-ajax", 
+            transport: {
+                read: {
+                     url: "Products_Read"
+                }, 
+				create: { 
+					url: "Products_Create"
+				},
+				update: { 
+					url: "Products_Update"
+				},
+				destroy: { 
+					url: "Products_Destroy"
+				}
+			},
+            schema: {
+                data: "Data",
+                model: {
+                    id: "ProductID",
+					fields: {
+						ProductID: { type: "number"},
+						ProductName: { type: "string"},
+						SupplierID: { type: "number"},
+						CategoryID: { type: "number"},
+						QuantityPerUnit: { type: "string"},
+						UnitPrice: { type: "number"},
+						UnitsInStock: { type: "number"},
+						UnitsOnOrder: { type: "number"},
+						ReorderLevel: { type: "number"},
+						Discontinued: { type: "boolean"}
+					}
+                }
+            }, 
+			serverPaging: true,
+			serverSorting: true,
+			serverSorting: true,
+        },
+        columnMenu: true,
+        editable: "inline",
+        pageable: true,
+        navigatable: true,
+        sortable: {
+            mode: "single"
+        },
+        filterable: true,
+        scrollable: true
+    })
+
+</script>
