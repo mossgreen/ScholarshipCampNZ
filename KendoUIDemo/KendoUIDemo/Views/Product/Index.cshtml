@@ -20,11 +20,9 @@
                     model: {
                         id: "ProductID",
                         fields: {
-                            ProductID: { editable: false, nullable: true },
+                            ProductID: { editable: false, nullable: false },
                             ProductName: { validation: { required: true } },
                             UnitPrice: { type: "number", validation: { required: true, min: 1 } },
-                            Discontinued: { type: "boolean" },
-                            UnitsInStock: { type: "number", validation: { min: 0, required: true } }
                         }
                     }
                 },
@@ -34,17 +32,22 @@
        });
 
 
-       $("#grid").kendoGrid({
-           dataSource: dataSource,
-           height: 400,
-           columns: [
-               { field: "ProductId" },
-               { field: "ProductName" },
-               { field: "UnitsInStock" },
-           ],
-           scrollable: true
-       })
-
+        $("#grid")
+            .kendoGrid({
+                dataSource: dataSource,
+                pageable: true,
+                height: 550,
+                toolbar: ["create"],
+                columns: [
+                    //"ProductId",
+                    { field: "ProductID", title: "Product Id", width: "100px" },
+                    { field: "ProductName", title: "Product Name", width: "220px" },
+                    { field: "UnitsInStock", title: "Units In Stock", width: "120px" },
+                    { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" }
+                ],
+                editable: "inline",
+                scrollable: true
+            });
 
 
     });
