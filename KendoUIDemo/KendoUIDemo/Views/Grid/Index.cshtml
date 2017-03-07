@@ -73,16 +73,12 @@
 
 
         $("#multiselect").kendoMultiSelect({
+            title: {
+                text: "Multi Select Demo"
+            },
             dataTextField: "ProductName",
             dataValueField: "ProductID",
-            dataSource: {
-                transport: {
-                    read: {
-                        dataType: "jsonp",
-                        url: "http://demos.telerik.com/kendo-ui/service/Products"
-                    }
-                }
-            }
+            dataSource: dataSource  
         });
 
 
