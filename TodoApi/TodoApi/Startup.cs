@@ -29,7 +29,7 @@ namespace TodoApi
 
             // Add framework services.
             services.AddMvc();
-            services.AddSingleton<ITodoRepository, TodoRepository>();
+            services.AddTransient<ITodoRepository, TodoRepository>();
 
         }
 
