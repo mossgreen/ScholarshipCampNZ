@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "StaffManagement";
+}
+
+<h2>Staff Management</h2>
+
+<div id="loadHere">
+
+
+</div>
+
+<div class="modal fade" id="craigs-model" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Student Profile</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="edit-student-form">
+                    <p>
+                        <label>Staff Id</label>
+                        <input type="text" id="staffId" name="staffId" readonly />
+                    </p>
+                    <p>
+                        <label>First Name</label>
+                        <input type="text" id="firstName" name="firstName" />
+                    </p>
+                    <p>
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" name="lastName" />
+                    </p>
+                    </p>
+                   
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="save-changes-btn btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+
+    $.ajax({
+        url: '/Home/GetStaffList',
+        type: 'Get',
+        
+        success: function (result) {           
+            $('#loadHere').html(result);
+            $(".editclick").click(function () {
+                var staffId = $(this).parents("tr").find(".staffId").html();
+                var firstName = $(this).parents("tr").find(".table-firstName").html();
+                var lastName = $(this).parents("tr").find(".table-lastName").html();
+                $("#craigs-model #staffId").val(staffId);
+                $("#craigs-model #firstName").val(firstName);
+                $("#craigs-model #lastName").val(lastName);
+
+                $("#craigs-model").modal("show");
+                
+            })
+        }
+    })
+    
+            
+    $(".save-changes-btn").click(function () {
+        var formData = $("#edit-student-form").serialize();
+        
+        $.ajax({
+            url: '/Home/UpdateStaff',
+            type: 'Post',
+            data: formData,
+            success: function (result) {
+                
+                if (result.success == true) {
+                    $("#craigs-model").modal("hide");
+                    $(".display-courses-partial-view").load("/Home/StaffManagement");
+                }
+            }
+        })
+    })
+       
+   
+</script>

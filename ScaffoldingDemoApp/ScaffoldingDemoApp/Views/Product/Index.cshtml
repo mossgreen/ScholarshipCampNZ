@@ -1,0 +1,39 @@
+﻿
+@(Html.Kendo().Grid<ScaffoldingDemoApp.Models.Product>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.Name);
+        columns.Bound(c => c.Color);
+        columns.Bound(c => c.ListPrice);
+        columns.Bound(c => c.Size);
+        
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .ColumnMenu()
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Navigatable()
+      .Selectable(selectable => {
+            selectable.Mode(GridSelectionMode.Single);
+            selectable.Type(GridSelectionType.Row);
+      })
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.ProductID))
+          .Read(read => read.Action("Products_Read", "Product"))
+          .Create(create => create.Action("Products_Create", "Product"))
+          .Update(update => update.Action("Products_Update", "Product"))
+          .Destroy(destroy => destroy.Action("Products_Destroy", "Product"))
+      )
+)

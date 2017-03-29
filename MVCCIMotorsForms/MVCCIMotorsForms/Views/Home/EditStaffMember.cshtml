@@ -8,6 +8,7 @@
 <table>
     @using (Html.BeginForm())
     {
+
         <tr>
             <td>
                 @Html.LabelFor(m => m.FirstName)
@@ -15,7 +16,6 @@
             <td>
                 @Html.TextBoxFor(m => m.FirstName)
             </td>
-
         </tr>
         <tr>
             <td>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <td>
-@Html.LabelFor(m => m.Address1)
+                @Html.LabelFor(m => m.Address1)
             </td>
             <td>
                 @Html.TextBoxFor(m => m.Address1)
@@ -43,11 +43,19 @@
         </tr>
         <tr>
             <td>
+                @Html.LabelFor(m => m.Address2)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Address2)
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <input type="submit" />
             </td>
         </tr>
-             
-        
+
+
     }
 
 </table>

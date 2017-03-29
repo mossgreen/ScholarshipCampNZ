@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<br />
+<br />
+<div id="divbox">
+
+
+<input type="text" id="bob" /> 
+<input type="button" id="abutton" value="clickMe!" />
+<input type="text" id="hibob" readonly />
+</div>
+<script>
+    $("#divbox").ready(function () {
+
+        $("#abutton").click(function () {
+
+            var name = $("#bob").val();
+            var nameData = { name: name };
+        
+        
+        
+            $.ajax({
+                type: "POST",
+                url: "/Home/BobChangedIt",           
+                data: nameData,
+                datatype: "Json",
+                success: function (result) {
+                    $("#hibob").val(result.newname);
+
+                }
+            });
+        });
+    });
+</script>

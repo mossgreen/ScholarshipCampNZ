@@ -1,0 +1,57 @@
+﻿@model MVCCIMotorsForms.Models.CustomerViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List all customers here</h2>
+
+@using (Html.BeginForm("Search", "Customer"))
+{
+    <div class="form-group">
+        <div id="searchGigs" class="input-group">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Search " })
+        </div>
+        
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+}
+
+<a href="/Customer/Create">Create</a>
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>Customer Id</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Address 1</td>
+        <td>Address 2</td>
+        <td>Phone Number</td>
+        <td>Suburb</td>
+        <td>Orders</td>
+        <th>&nbsp</th>
+    </tr>
+    @foreach (var ct in Model.Customers)
+    {
+        <tr>
+            <td>@ct.PersonId</td>
+            <td>@ct.FirstName</td>
+            <td>@ct.LastName</td>
+            <td>@ct.Address1</td>
+            <td>@ct.Address2</td>
+            <td>@ct.PhoneNumber</td>
+            <td>@ct.SuburbId</td>
+            <td>
+                <a href="../saleOrder/create/?id=@ct.PersonId">Create</a>
+                |
+                <a href="../saleOrder/index/?id=@ct.PersonId">View</a>
+            </td>
+            <td> <a href="/Customer/Edit/?id=@ct.PersonId">Edit</a>
+                |
+                <a href="/Customer/Delete/?id=@ct.PersonId">Delete</a>
+            </td>
+
+        </tr>
+
+    }
+
+</table>
+

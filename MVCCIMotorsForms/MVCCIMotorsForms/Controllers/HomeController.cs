@@ -11,6 +11,8 @@ namespace MVCCIMotorsForms.Controllers
     {
         public ActionResult Index()
         {
+
+            //goes to the index.cshtml
             return View();
         }
 
@@ -18,6 +20,7 @@ namespace MVCCIMotorsForms.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            //goes to the about.cshtml
             return View();
         }
 
@@ -28,28 +31,46 @@ namespace MVCCIMotorsForms.Controllers
             return View();
         }
 
+        /*will be called with /home/StaffManagement*/
         public ActionResult StaffManagement()
         {
             IC_MotersEntities db = new IC_MotersEntities();
-            var stafflist = db.People.Where(x => x.PersonTypeId != 4).Select(x => new StaffClass {  StaffId = x.PersonId, FirstName = x.FirstName,
-                LastName = x.LastName, Address1 = x.Address1 }).ToList();
+
+
+            var stafflist = db.People
+                .Where(x =>
+                    x.PersonTypeId != 4)
+                    .Select(x =>
+                        new StaffClass
+                        {
+                            StaffId = x.PersonId,
+                            FirstName = x.FirstName,
+                            LastName = x.LastName,
+                            Address1 = x.Address1,
+                            Address2 = x.Address2,
+                        })
+                    .ToList();
+
+            //StaffManagement.cshtml
             return View(stafflist);
         }
 
+
         public ActionResult EditStaffMember(int staffId)
         {
-             IC_MotersEntities db = new IC_MotersEntities();
+            IC_MotersEntities db = new IC_MotersEntities();
 
-            var bob = db.People.Find(staffId);
+            var people = db.People.Find(staffId);
             var staffToEdit = new StaffClass
             {
-                FirstName = bob.FirstName,
-                LastName = bob.LastName,
-                StaffId = bob.PersonId,
-                Address1 = bob.Address1,
-                Salary = bob.Salary
+                FirstName = people.FirstName,
+                LastName = people.LastName,
+                StaffId = people.PersonId,
+                Address1 = people.Address1,
+                Address2 = people.Address2,
+                Salary = people.Salary
             };
-                     
+
             return View(staffToEdit);
         }
 
@@ -58,14 +79,54 @@ namespace MVCCIMotorsForms.Controllers
         {
             IC_MotersEntities db = new IC_MotersEntities();
             var newStaff = db.People.Find(staffData.StaffId);
-            
+
             newStaff.PersonId = staffData.StaffId;
             newStaff.FirstName = staffData.FirstName.Trim();
             newStaff.LastName = staffData.LastName.Trim();
             newStaff.Address1 = staffData.Address1.Trim();
-            newStaff.Salary = staffData.Salary;          
+            newStaff.Address2 = staffData.Address2.Trim();
+            newStaff.Salary = staffData.Salary;
             db.SaveChanges();
-            return RedirectToAction("StaffManagement","Home");
+            return RedirectToAction("StaffManagement", "Home");
+        }
+
+        public ActionResult CreateStaffMember()
+        {
+            IC_MotersEntities db = new IC_MotersEntities();
+            var viewModel = new StaffClass
+            {
+                SuburbTypes = db.SuburbTypes.ToList()
+            };
+
+        return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateStaffMember(StaffClass viewModel)
+        {
+            IC_MotersEntities db = new IC_MotersEntities();
+
+            if (!ModelState.IsValid)
+            {
+                viewModel.SuburbTypes = db.SuburbTypes;
+                return View( viewModel);
+            }
+            var staff = new Person
+            {
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                Salary = viewModel.Salary,
+                Address1 = viewModel.Address1,
+                Address2 = viewModel.Address2,
+                SuburbId = viewModel.SuburbId,
+                PhoneNumber = viewModel.PhoneNumber,
+                PersonTypeId = 3
+            };
+
+            db.People.Add(staff);
+            db.SaveChanges();
+
+            return RedirectToAction("StaffManagement", "Home");
         }
     }
 }

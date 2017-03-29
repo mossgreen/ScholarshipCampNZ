@@ -1,0 +1,27 @@
+﻿@model List<ICMVCJQuery.Models.StaffData>
+
+@{ 
+    Layout = null;
+}
+
+<table id="staffList" class="table table-bordered table-striped">
+    <tr>
+        <th>
+            Staff Id
+        </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>&nbsp</th>
+    </tr>
+    @foreach (var cl in Model)
+    {
+        <tr>
+            <td class="staffId">@cl.staffId</td>
+            <td class="table-firstName">@cl.firstName</td>
+            <td class="table-lastName">@cl.lastName</td>
+            <td><button class="editclick">Edit</button></td>
+        </tr>
+    }
+</table>
+
+

@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="KnownName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergencyContact1Id" Type="int" />
+          <Property Name="EmergencyContact2Id" Type="int" />
+          <Property Name="YearEnrolled" Type="int" />
+          <Property Name="Ethnicity" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageSpoken" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustodyDispute" Type="bit" />
+          <Property Name="CustodyDisputeDescription" Type="nvarchar(max)" />
+          <Property Name="WearsGlasses" Type="bit" />
+          <Property Name="HearingAid" Type="bit" />
+          <Property Name="Instructions" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="AllowPhotoTag" Type="bit" />
+          <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CYF" Type="bit" />
+          <Property Name="CYFDescription" Type="nvarchar(max)" />
+          <Property Name="IsVegererian" Type="bit" />
+          <Property Name="GlutenFree" Type="bit" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="ChildDoctorName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ChildDoctorContactFixed" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsTetanusImmunised" Type="bit" />
+          <Property Name="SwimmingCompetency" Type="varchar" MaxLength="50" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="Year" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChildDoctorContact" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Org">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="OldId" Type="int" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="TerritoryId" Type="int" />
+          <Property Name="ContactId" Type="int" />
+          <Property Name="Decile" Type="int" />
+          <Property Name="Roll" Type="int" />
+          <Property Name="RollApproved" Type="int" />
+          <Property Name="LeaseStart" Type="date" />
+          <Property Name="LeaseEnd" Type="date" />
+          <Property Name="LeasorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LeaseCostFixed" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MeetingRoom" Type="nvarchar" MaxLength="100" />
+          <Property Name="BankAccNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsdNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="OscarNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="ExtraChargeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExtraMinRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BeforeThreshold" Type="int" />
+          <Property Name="AfterThreshold" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="HasSaved" Type="bit" Nullable="false" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="LicenceStart" Type="datetime" />
+          <Property Name="LicenceEnd" Type="datetime" />
+          <Property Name="WeeklyAdminCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="WeeklyRentCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CurrentRevenue" Type="money" />
+          <Property Name="CurrentExpenses" Type="money" />
+          <Property Name="CurrentBalance" Type="money" />
+          <Property Name="CurrentOverdueAmt" Type="money" />
+          <Property Name="MasterPin" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsChildPhotoEnabled" Type="bit" />
+          <Property Name="IsAuthPhotoEnabled" Type="bit" />
+          <Property Name="IsStaffPhotoEnabled" Type="bit" />
+          <Property Name="IsMultiSitePickupEnabled" Type="bit" />
+          <Property Name="IsFreeTrial" Type="bit" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="StaffClockMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="LeaseCostPercentage" Type="int" />
+          <Property Name="IsPaymentGatewayEnabled" Type="bit" />
+          <Property Name="SiteBankAccNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="LicenceFee" Type="money" />
+          <Property Name="IsDashboardMsgEnabled" Type="bit" />
+          <Property Name="IsEMailMsgEnabled" Type="bit" />
+          <Property Name="IsSMSMsgEnabled" Type="bit" />
+          <Property Name="SiteContactPersone" Type="nvarchar" MaxLength="100" />
+          <Property Name="SiteContactPhoneFixed" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteContactEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="InvoiceDateSetting" Type="bit" Nullable="false" />
+          <Property Name="HeadOfficeLogo" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsWizard" Type="bit" />
+          <Property Name="LastStep" Type="int" />
+          <Property Name="IsProgrammePriceVisible" Type="bit" />
+          <Property Name="IsBookingPromoMsgVisible" Type="bit" />
+          <Property Name="BookingPromotionMsg" Type="nvarchar(max)" />
+          <Property Name="IsHolBookingPromoMsgVisible" Type="bit" />
+          <Property Name="HolBookingPromoMsg" Type="nvarchar(max)" />
+          <Property Name="IsSpecialBookingPromoMsgVisible" Type="bit" />
+          <Property Name="SpecialBookingPromoMsg" Type="nvarchar(max)" />
+          <Property Name="LoginURL" Type="nvarchar" MaxLength="550" />
+          <Property Name="ShowCustomisedBooking" Type="bit" Nullable="false" />
+          <Property Name="InvoiceDay" Type="int" />
+          <Property Name="InvoiceDueDays" Type="int" />
+          <Property Name="InvoiceGenDay" Type="int" Nullable="false" />
+          <Property Name="InvoiceGenWeek" Type="int" Nullable="false" />
+          <Property Name="InvoiceDueDay" Type="int" Nullable="false" />
+          <Property Name="InvoiceDueWeek" Type="int" Nullable="false" />
+          <Property Name="IsInvArrearBasedOnStart" Type="bit" />
+          <Property Name="CSSBillingPlanId" Type="int" />
+          <Property Name="CSSRevireDate" Type="datetime" />
+          <Property Name="CSSComment" Type="varchar(max)" />
+          <Property Name="BookingInfoRegular" Type="nvarchar" MaxLength="200" />
+          <Property Name="BookingInfoCasual" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsNew" Type="bit" />
+          <Property Name="CurrentStatus" Type="int" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="255" />
+          <Property Name="AllowOverdueNotification" Type="bit" />
+          <Property Name="IsCreditCardPaymentDisabled" Type="bit" />
+          <Property Name="NewChildFlagDays" Type="int" />
+          <Property Name="ExclusionDayIsChargeable" Type="bit" />
+          <Property Name="IsAimyClient" Type="bit" />
+          <Property Name="CustomisedBookingCalendarReadOnly" Type="bit" />
+          <Property Name="ShowParentDOB" Type="bit" />
+          <Property Name="IsMergeReconcilInvoice" Type="bit" />
+          <Property Name="IsDeductByCCPayment" Type="bit" />
+          <Property Name="SiteLandlineNumberFixed" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteStreetNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="SiteSuburb" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="SitePostCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteLatitude" Type="nvarchar" MaxLength="250" />
+          <Property Name="SiteLongitude" Type="nvarchar" MaxLength="250" />
+          <Property Name="TimeZoneIdentifier" Type="nvarchar" MaxLength="250" />
+          <Property Name="Culture" Type="nvarchar" MaxLength="50" />
+          <Property Name="Language" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteContactPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteLandlineNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="TradingName" Type="varchar" MaxLength="250" />
+          <Property Name="TaxNumber" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Org_Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildId" Type="int" />
+          <Property Name="SiteId" Type="int" />
+          <Property Name="FirstAttendanceDate" Type="datetime" />
+          <Property Name="NewFlagDone" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsLock" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Org_Child_Child1">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="Org_Child" Type="Self.Org_Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Org_Child">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Child_Org">
+          <End Role="Org" Type="Self.Org" Multiplicity="0..1" />
+          <End Role="Org_Child" Type="Self.Org_Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Org">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Org_Child">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Org">
+          <End Role="Org" Type="Self.Org" Multiplicity="0..1" />
+          <End Role="Org1" Type="Self.Org" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Org">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Org1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Org" EntityType="Self.Org" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Org_Child" EntityType="Self.Org_Child" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Org_Child_Child1" Association="Self.FK_Org_Child_Child1">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="Org_Child" EntitySet="Org_Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Child_Org" Association="Self.FK_Org_Child_Org">
+            <End Role="Org" EntitySet="Org" />
+            <End Role="Org_Child" EntitySet="Org_Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Org" Association="Self.FK_Org_Org">
+            <End Role="Org" EntitySet="Org" />
+            <End Role="Org1" EntitySet="Org" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KnownName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmergencyContact1Id" Type="Int32" />
+          <Property Name="EmergencyContact2Id" Type="Int32" />
+          <Property Name="YearEnrolled" Type="Int32" />
+          <Property Name="Ethnicity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageSpoken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustodyDispute" Type="Boolean" />
+          <Property Name="CustodyDisputeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WearsGlasses" Type="Boolean" />
+          <Property Name="HearingAid" Type="Boolean" />
+          <Property Name="Instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="AllowPhotoTag" Type="Boolean" />
+          <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CYF" Type="Boolean" />
+          <Property Name="CYFDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVegererian" Type="Boolean" />
+          <Property Name="GlutenFree" Type="Boolean" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChildDoctorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChildDoctorContactFixed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsTetanusImmunised" Type="Boolean" />
+          <Property Name="SwimmingCompetency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChildDoctorContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Org_Child" Relationship="Self.FK_Org_Child_Child1" FromRole="Child" ToRole="Org_Child" />
+        </EntityType>
+        <EntityType Name="Org">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="OldId" Type="Int32" />
+          <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="TerritoryId" Type="Int32" />
+          <Property Name="ContactId" Type="Int32" />
+          <Property Name="Decile" Type="Int32" />
+          <Property Name="Roll" Type="Int32" />
+          <Property Name="RollApproved" Type="Int32" />
+          <Property Name="LeaseStart" Type="DateTime" Precision="0" />
+          <Property Name="LeaseEnd" Type="DateTime" Precision="0" />
+          <Property Name="LeasorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeaseCostFixed" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MeetingRoom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsdNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OscarNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraChargeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraMinRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BeforeThreshold" Type="Int32" />
+          <Property Name="AfterThreshold" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="HasSaved" Type="Boolean" Nullable="false" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="LicenceStart" Type="DateTime" Precision="3" />
+          <Property Name="LicenceEnd" Type="DateTime" Precision="3" />
+          <Property Name="WeeklyAdminCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WeeklyRentCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CurrentRevenue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CurrentExpenses" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CurrentBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CurrentOverdueAmt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MasterPin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsChildPhotoEnabled" Type="Boolean" />
+          <Property Name="IsAuthPhotoEnabled" Type="Boolean" />
+          <Property Name="IsStaffPhotoEnabled" Type="Boolean" />
+          <Property Name="IsMultiSitePickupEnabled" Type="Boolean" />
+          <Property Name="IsFreeTrial" Type="Boolean" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="StaffClockMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeaseCostPercentage" Type="Int32" />
+          <Property Name="IsPaymentGatewayEnabled" Type="Boolean" />
+          <Property Name="SiteBankAccNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LicenceFee" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IsDashboardMsgEnabled" Type="Boolean" />
+          <Property Name="IsEMailMsgEnabled" Type="Boolean" />
+          <Property Name="IsSMSMsgEnabled" Type="Boolean" />
+          <Property Name="SiteContactPersone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SiteContactPhoneFixed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceDateSetting" Type="Boolean" Nullable="false" />
+          <Property Name="HeadOfficeLogo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsWizard" Type="Boolean" />
+          <Property Name="LastStep" Type="Int32" />
+          <Property Name="IsProgrammePriceVisible" Type="Boolean" />
+          <Property Name="IsBookingPromoMsgVisible" Type="Boolean" />
+          <Property Name="BookingPromotionMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsHolBookingPromoMsgVisible" Type="Boolean" />
+          <Property Name="HolBookingPromoMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSpecialBookingPromoMsgVisible" Type="Boolean" />
+          <Property Name="SpecialBookingPromoMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoginURL" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="ShowCustomisedBooking" Type="Boolean" Nullable="false" />
+          <Property Name="InvoiceDay" Type="Int32" />
+          <Property Name="InvoiceDueDays" Type="Int32" />
+          <Property Name="InvoiceGenDay" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceGenWeek" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceDueDay" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceDueWeek" Type="Int32" Nullable="false" />
+          <Property Name="IsInvArrearBasedOnStart" Type="Boolean" />
+          <Property Name="CSSBillingPlanId" Type="Int32" />
+          <Property Name="CSSRevireDate" Type="DateTime" Precision="3" />
+          <Property Name="CSSComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BookingInfoRegular" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BookingInfoCasual" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsNew" Type="Boolean" />
+          <Property Name="CurrentStatus" Type="Int32" />
+          <Property Name="Logo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AllowOverdueNotification" Type="Boolean" />
+          <Property Name="IsCreditCardPaymentDisabled" Type="Boolean" />
+          <Property Name="NewChildFlagDays" Type="Int32" />
+          <Property Name="ExclusionDayIsChargeable" Type="Boolean" />
+          <Property Name="IsAimyClient" Type="Boolean" />
+          <Property Name="CustomisedBookingCalendarReadOnly" Type="Boolean" />
+          <Property Name="ShowParentDOB" Type="Boolean" />
+          <Property Name="IsMergeReconcilInvoice" Type="Boolean" />
+          <Property Name="IsDeductByCCPayment" Type="Boolean" />
+          <Property Name="SiteLandlineNumberFixed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteStreetNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SiteSuburb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SitePostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteLatitude" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SiteLongitude" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TimeZoneIdentifier" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Culture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteLandlineNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TradingName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Org_Child" Relationship="Self.FK_Org_Child_Org" FromRole="Org" ToRole="Org_Child" />
+          <NavigationProperty Name="Org1" Relationship="Self.FK_Org_Org" FromRole="Org" ToRole="Org1" />
+          <NavigationProperty Name="Org2" Relationship="Self.FK_Org_Org" FromRole="Org1" ToRole="Org" />
+        </EntityType>
+        <EntityType Name="Org_Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildId" Type="Int32" />
+          <Property Name="SiteId" Type="Int32" />
+          <Property Name="FirstAttendanceDate" Type="DateTime" Precision="3" />
+          <Property Name="NewFlagDone" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsLock" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Child" Relationship="Self.FK_Org_Child_Child1" FromRole="Org_Child" ToRole="Child" />
+          <NavigationProperty Name="Org" Relationship="Self.FK_Org_Child_Org" FromRole="Org_Child" ToRole="Org" />
+        </EntityType>
+        <Association Name="FK_Org_Child_Child1">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="Org_Child" Type="Self.Org_Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Org_Child">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Child_Org">
+          <End Role="Org" Type="Self.Org" Multiplicity="0..1" />
+          <End Role="Org_Child" Type="Self.Org_Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Org">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Org_Child">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Org">
+          <End Role="Org" Type="Self.Org" Multiplicity="0..1" />
+          <End Role="Org1" Type="Self.Org" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Org">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Org1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Children" EntityType="Self.Child" />
+          <EntitySet Name="Orgs" EntityType="Self.Org" />
+          <EntitySet Name="Org_Child" EntityType="Self.Org_Child" />
+          <AssociationSet Name="FK_Org_Child_Child1" Association="Self.FK_Org_Child_Child1">
+            <End Role="Child" EntitySet="Children" />
+            <End Role="Org_Child" EntitySet="Org_Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Child_Org" Association="Self.FK_Org_Child_Org">
+            <End Role="Org" EntitySet="Orgs" />
+            <End Role="Org_Child" EntitySet="Org_Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Org" Association="Self.FK_Org_Org">
+            <End Role="Org" EntitySet="Orgs" />
+            <End Role="Org1" EntitySet="Orgs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="Model.Child">
+              <MappingFragment StoreEntitySet="Child">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KnownName" ColumnName="KnownName" />
+                <ScalarProperty Name="EmergencyContact1Id" ColumnName="EmergencyContact1Id" />
+                <ScalarProperty Name="EmergencyContact2Id" ColumnName="EmergencyContact2Id" />
+                <ScalarProperty Name="YearEnrolled" ColumnName="YearEnrolled" />
+                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
+                <ScalarProperty Name="LanguageSpoken" ColumnName="LanguageSpoken" />
+                <ScalarProperty Name="CustodyDispute" ColumnName="CustodyDispute" />
+                <ScalarProperty Name="CustodyDisputeDescription" ColumnName="CustodyDisputeDescription" />
+                <ScalarProperty Name="WearsGlasses" ColumnName="WearsGlasses" />
+                <ScalarProperty Name="HearingAid" ColumnName="HearingAid" />
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="AllowPhotoTag" ColumnName="AllowPhotoTag" />
+                <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="CYF" ColumnName="CYF" />
+                <ScalarProperty Name="CYFDescription" ColumnName="CYFDescription" />
+                <ScalarProperty Name="IsVegererian" ColumnName="IsVegererian" />
+                <ScalarProperty Name="GlutenFree" ColumnName="GlutenFree" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="ChildDoctorName" ColumnName="ChildDoctorName" />
+                <ScalarProperty Name="ChildDoctorContactFixed" ColumnName="ChildDoctorContactFixed" />
+                <ScalarProperty Name="IsTetanusImmunised" ColumnName="IsTetanusImmunised" />
+                <ScalarProperty Name="SwimmingCompetency" ColumnName="SwimmingCompetency" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ChildDoctorContact" ColumnName="ChildDoctorContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orgs">
+            <EntityTypeMapping TypeName="Model.Org">
+              <MappingFragment StoreEntitySet="Org">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="TerritoryId" ColumnName="TerritoryId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="Decile" ColumnName="Decile" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="RollApproved" ColumnName="RollApproved" />
+                <ScalarProperty Name="LeaseStart" ColumnName="LeaseStart" />
+                <ScalarProperty Name="LeaseEnd" ColumnName="LeaseEnd" />
+                <ScalarProperty Name="LeasorName" ColumnName="LeasorName" />
+                <ScalarProperty Name="LeaseCostFixed" ColumnName="LeaseCostFixed" />
+                <ScalarProperty Name="MeetingRoom" ColumnName="MeetingRoom" />
+                <ScalarProperty Name="BankAccNum" ColumnName="BankAccNum" />
+                <ScalarProperty Name="MsdNum" ColumnName="MsdNum" />
+                <ScalarProperty Name="OscarNum" ColumnName="OscarNum" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ExtraChargeType" ColumnName="ExtraChargeType" />
+                <ScalarProperty Name="ExtraMinRate" ColumnName="ExtraMinRate" />
+                <ScalarProperty Name="BeforeThreshold" ColumnName="BeforeThreshold" />
+                <ScalarProperty Name="AfterThreshold" ColumnName="AfterThreshold" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdateOn" ColumnName="UpdateOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="HasSaved" ColumnName="HasSaved" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="LicenceStart" ColumnName="LicenceStart" />
+                <ScalarProperty Name="LicenceEnd" ColumnName="LicenceEnd" />
+                <ScalarProperty Name="WeeklyAdminCost" ColumnName="WeeklyAdminCost" />
+                <ScalarProperty Name="WeeklyRentCost" ColumnName="WeeklyRentCost" />
+                <ScalarProperty Name="CurrentRevenue" ColumnName="CurrentRevenue" />
+                <ScalarProperty Name="CurrentExpenses" ColumnName="CurrentExpenses" />
+                <ScalarProperty Name="CurrentBalance" ColumnName="CurrentBalance" />
+                <ScalarProperty Name="CurrentOverdueAmt" ColumnName="CurrentOverdueAmt" />
+                <ScalarProperty Name="MasterPin" ColumnName="MasterPin" />
+                <ScalarProperty Name="IsChildPhotoEnabled" ColumnName="IsChildPhotoEnabled" />
+                <ScalarProperty Name="IsAuthPhotoEnabled" ColumnName="IsAuthPhotoEnabled" />
+                <ScalarProperty Name="IsStaffPhotoEnabled" ColumnName="IsStaffPhotoEnabled" />
+                <ScalarProperty Name="IsMultiSitePickupEnabled" ColumnName="IsMultiSitePickupEnabled" />
+                <ScalarProperty Name="IsFreeTrial" ColumnName="IsFreeTrial" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="StaffClockMethod" ColumnName="StaffClockMethod" />
+                <ScalarProperty Name="LeaseCostPercentage" ColumnName="LeaseCostPercentage" />
+                <ScalarProperty Name="IsPaymentGatewayEnabled" ColumnName="IsPaymentGatewayEnabled" />
+                <ScalarProperty Name="SiteBankAccNum" ColumnName="SiteBankAccNum" />
+                <ScalarProperty Name="LicenceFee" ColumnName="LicenceFee" />
+                <ScalarProperty Name="IsDashboardMsgEnabled" ColumnName="IsDashboardMsgEnabled" />
+                <ScalarProperty Name="IsEMailMsgEnabled" ColumnName="IsEMailMsgEnabled" />
+                <ScalarProperty Name="IsSMSMsgEnabled" ColumnName="IsSMSMsgEnabled" />
+                <ScalarProperty Name="SiteContactPersone" ColumnName="SiteContactPersone" />
+                <ScalarProperty Name="SiteContactPhoneFixed" ColumnName="SiteContactPhoneFixed" />
+                <ScalarProperty Name="SiteContactEmail" ColumnName="SiteContactEmail" />
+                <ScalarProperty Name="InvoiceDateSetting" ColumnName="InvoiceDateSetting" />
+                <ScalarProperty Name="HeadOfficeLogo" ColumnName="HeadOfficeLogo" />
+                <ScalarProperty Name="IsWizard" ColumnName="IsWizard" />
+                <ScalarProperty Name="LastStep" ColumnName="LastStep" />
+                <ScalarProperty Name="IsProgrammePriceVisible" ColumnName="IsProgrammePriceVisible" />
+                <ScalarProperty Name="IsBookingPromoMsgVisible" ColumnName="IsBookingPromoMsgVisible" />
+                <ScalarProperty Name="BookingPromotionMsg" ColumnName="BookingPromotionMsg" />
+                <ScalarProperty Name="IsHolBookingPromoMsgVisible" ColumnName="IsHolBookingPromoMsgVisible" />
+                <ScalarProperty Name="HolBookingPromoMsg" ColumnName="HolBookingPromoMsg" />
+                <ScalarProperty Name="IsSpecialBookingPromoMsgVisible" ColumnName="IsSpecialBookingPromoMsgVisible" />
+                <ScalarProperty Name="SpecialBookingPromoMsg" ColumnName="SpecialBookingPromoMsg" />
+                <ScalarProperty Name="LoginURL" ColumnName="LoginURL" />
+                <ScalarProperty Name="ShowCustomisedBooking" ColumnName="ShowCustomisedBooking" />
+                <ScalarProperty Name="InvoiceDay" ColumnName="InvoiceDay" />
+                <ScalarProperty Name="InvoiceDueDays" ColumnName="InvoiceDueDays" />
+                <ScalarProperty Name="InvoiceGenDay" ColumnName="InvoiceGenDay" />
+                <ScalarProperty Name="InvoiceGenWeek" ColumnName="InvoiceGenWeek" />
+                <ScalarProperty Name="InvoiceDueDay" ColumnName="InvoiceDueDay" />
+                <ScalarProperty Name="InvoiceDueWeek" ColumnName="InvoiceDueWeek" />
+                <ScalarProperty Name="IsInvArrearBasedOnStart" ColumnName="IsInvArrearBasedOnStart" />
+                <ScalarProperty Name="CSSBillingPlanId" ColumnName="CSSBillingPlanId" />
+                <ScalarProperty Name="CSSRevireDate" ColumnName="CSSRevireDate" />
+                <ScalarProperty Name="CSSComment" ColumnName="CSSComment" />
+                <ScalarProperty Name="BookingInfoRegular" ColumnName="BookingInfoRegular" />
+                <ScalarProperty Name="BookingInfoCasual" ColumnName="BookingInfoCasual" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="CurrentStatus" ColumnName="CurrentStatus" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="AllowOverdueNotification" ColumnName="AllowOverdueNotification" />
+                <ScalarProperty Name="IsCreditCardPaymentDisabled" ColumnName="IsCreditCardPaymentDisabled" />
+                <ScalarProperty Name="NewChildFlagDays" ColumnName="NewChildFlagDays" />
+                <ScalarProperty Name="ExclusionDayIsChargeable" ColumnName="ExclusionDayIsChargeable" />
+                <ScalarProperty Name="IsAimyClient" ColumnName="IsAimyClient" />
+                <ScalarProperty Name="CustomisedBookingCalendarReadOnly" ColumnName="CustomisedBookingCalendarReadOnly" />
+                <ScalarProperty Name="ShowParentDOB" ColumnName="ShowParentDOB" />
+                <ScalarProperty Name="IsMergeReconcilInvoice" ColumnName="IsMergeReconcilInvoice" />
+                <ScalarProperty Name="IsDeductByCCPayment" ColumnName="IsDeductByCCPayment" />
+                <ScalarProperty Name="SiteLandlineNumberFixed" ColumnName="SiteLandlineNumberFixed" />
+                <ScalarProperty Name="SiteStreetNum" ColumnName="SiteStreetNum" />
+                <ScalarProperty Name="SiteAddress" ColumnName="SiteAddress" />
+                <ScalarProperty Name="SiteSuburb" ColumnName="SiteSuburb" />
+                <ScalarProperty Name="SiteCity" ColumnName="SiteCity" />
+                <ScalarProperty Name="SitePostCode" ColumnName="SitePostCode" />
+                <ScalarProperty Name="SiteCountry" ColumnName="SiteCountry" />
+                <ScalarProperty Name="SiteLatitude" ColumnName="SiteLatitude" />
+                <ScalarProperty Name="SiteLongitude" ColumnName="SiteLongitude" />
+                <ScalarProperty Name="TimeZoneIdentifier" ColumnName="TimeZoneIdentifier" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="SiteContactPhone" ColumnName="SiteContactPhone" />
+                <ScalarProperty Name="SiteLandlineNumber" ColumnName="SiteLandlineNumber" />
+                <ScalarProperty Name="TradingName" ColumnName="TradingName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Org_Child">
+            <EntityTypeMapping TypeName="Model.Org_Child">
+              <MappingFragment StoreEntitySet="Org_Child">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="FirstAttendanceDate" ColumnName="FirstAttendanceDate" />
+                <ScalarProperty Name="NewFlagDone" ColumnName="NewFlagDone" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsLock" ColumnName="IsLock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

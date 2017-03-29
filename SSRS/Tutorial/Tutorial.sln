@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Tutorial", "Tutorial\Tutorial.rptproj", "{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}"
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Tutorial", "Tutorial\Tutorial.rptproj", "{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,14 +12,14 @@ Global
 		Release|Default = Release|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.Debug|Default.ActiveCfg = Debug
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.Debug|Default.Build.0 = Debug
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.Debug|Default.Deploy.0 = Debug
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.DebugLocal|Default.ActiveCfg = DebugLocal
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.DebugLocal|Default.Build.0 = DebugLocal
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.Release|Default.ActiveCfg = Release
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.Release|Default.Build.0 = Release
-		{1BFF3DA8-3CAB-4D89-982E-A9EA4135C532}.Release|Default.Deploy.0 = Release
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.Debug|Default.ActiveCfg = Debug
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.Debug|Default.Build.0 = Debug
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.Debug|Default.Deploy.0 = Debug
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.DebugLocal|Default.Build.0 = DebugLocal
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.Release|Default.ActiveCfg = Release
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.Release|Default.Build.0 = Release
+		{E0D5A1FD-1296-4F7F-A938-1D5AF94A7687}.Release|Default.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,57 @@
+﻿
+<div id="grid"></div>
+<script>
+
+
+    $(document).ready(function() {
+
+       var  dataSource = new kendo.data.DataSource({
+                type: "aspnetmvc-ajax",
+                batch: true,
+                pageSize: 10,
+                transport: {
+                    read: {
+                        url: "Products_Read",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    model: {
+                        id: "ProductID",
+                        fields: {
+                            ProductID: { editable: false, nullable: false },
+                            ProductName: { validation: { required: true } },
+                            UnitPrice: { type: "number", validation: { required: true, min: 1 } },
+                        }
+                    }
+                },
+                serverPaging: true,
+                serverSorting: true,
+                serverSorting: true,
+       });
+
+
+        $("#grid")
+            .kendoGrid({
+                dataSource: dataSource,
+                pageable: true,
+                height: 550,
+                toolbar: ["create"],
+                columns: [
+                    //"ProductId",
+                    { field: "ProductID", title: "Product Id", width: "100px" },
+                    { field: "ProductName", title: "Product Name", width: "220px" },
+                    { field: "UnitsInStock", title: "Units In Stock", width: "120px" },
+                    { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" }
+                ],
+                editable: "inline",
+                scrollable: true
+            });
+
+
+    });
+
+
+
+</script>

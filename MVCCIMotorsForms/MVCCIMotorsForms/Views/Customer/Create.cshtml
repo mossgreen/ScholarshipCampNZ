@@ -1,0 +1,44 @@
+﻿@model MVCCIMotorsForms.Models.CustomerFormViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(m => m.CustomerId)
+
+    <div class="form-group">
+        @Html.LabelFor(m=> m.FirstName)
+        @Html.TextBoxFor(m=> m.FirstName)
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address1)
+        @Html.TextBoxFor(m => m.Address1)
+        @Html.ValidationMessageFor(m => m.Address1)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address2)
+        @Html.TextBoxFor(m => m.Address2)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SuburbId)
+        @Html.TextBoxFor(m => m.SuburbId)
+        @Html.ValidationMessageFor(m => m.SuburbId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.TextBoxFor(m => m.PhoneNumber)
+        @Html.ValidationMessageFor(m => m.PhoneNumber)
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Save</button>
+}
+
