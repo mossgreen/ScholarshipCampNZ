@@ -16,8 +16,16 @@
       <Name>SalesByYear.rsd</Name>
       <FullPath>SalesByYear.rsd</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>SalesByYearByTerritory.rsd</Name>
+      <FullPath>SalesByYearByTerritory.rsd</FullPath>
+    </ProjectItem>
   </DataSets>
   <Reports>
+    <ProjectItem>
+      <Name>Data Regions Demo.rdl</Name>
+      <FullPath>Data Regions Demo.rdl</FullPath>
+    </ProjectItem>
     <ProjectItem>
       <Name>Report Items Demo.rdl</Name>
       <FullPath>Report Items Demo.rdl</FullPath>
@@ -27,8 +35,12 @@
       <FullPath>Sales by Year by Territory.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Data Regions Demo.rdl</Name>
-      <FullPath>Data Regions Demo.rdl</FullPath>
+      <Name>01-Adding Rows and Columns.rdl</Name>
+      <FullPath>01-Adding Rows and Columns.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>02-Cell Contents.rdl</Name>
+      <FullPath>02-Cell Contents.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
