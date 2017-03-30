@@ -9,26 +9,26 @@
   </DataSources>
   <DataSets>
     <ProjectItem>
-      <Name>SalesByYear.rsd</Name>
-      <FullPath>SalesByYear.rsd</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Sales.rsd</Name>
       <FullPath>Sales.rsd</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>SalesByYear.rsd</Name>
+      <FullPath>SalesByYear.rsd</FullPath>
+    </ProjectItem>
   </DataSets>
   <Reports>
+    <ProjectItem>
+      <Name>Report Items Demo.rdl</Name>
+      <FullPath>Report Items Demo.rdl</FullPath>
+    </ProjectItem>
     <ProjectItem>
       <Name>Sales by Year by Territory.rdl</Name>
       <FullPath>Sales by Year by Territory.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Report1.rdl</Name>
-      <FullPath>Report1.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Report Items Demo.rdl</Name>
-      <FullPath>Report Items Demo.rdl</FullPath>
+      <Name>Data Regions Demo.rdl</Name>
+      <FullPath>Data Regions Demo.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
