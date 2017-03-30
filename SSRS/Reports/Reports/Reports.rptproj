@@ -20,8 +20,20 @@
       <Name>SalesByYearByTerritory.rsd</Name>
       <FullPath>SalesByYearByTerritory.rsd</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>SalesByYearByTerritoryByCategory.rsd</Name>
+      <FullPath>SalesByYearByTerritoryByCategory.rsd</FullPath>
+    </ProjectItem>
   </DataSets>
   <Reports>
+    <ProjectItem>
+      <Name>01-Adding Rows and Columns.rdl</Name>
+      <FullPath>01-Adding Rows and Columns.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>02-Cell Contents.rdl</Name>
+      <FullPath>02-Cell Contents.rdl</FullPath>
+    </ProjectItem>
     <ProjectItem>
       <Name>Data Regions Demo.rdl</Name>
       <FullPath>Data Regions Demo.rdl</FullPath>
@@ -35,12 +47,16 @@
       <FullPath>Sales by Year by Territory.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>01-Adding Rows and Columns.rdl</Name>
-      <FullPath>01-Adding Rows and Columns.rdl</FullPath>
+      <Name>04-Grouping.rdl</Name>
+      <FullPath>04-Grouping.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>02-Cell Contents.rdl</Name>
-      <FullPath>02-Cell Contents.rdl</FullPath>
+      <Name>05-Repeating Groups.rdl</Name>
+      <FullPath>05-Repeating Groups.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>07-Adjacent Groups.rdl</Name>
+      <FullPath>07-Adjacent Groups.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
