@@ -406,9 +406,10 @@
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString>Data Source=.;Initial Catalog=AdventureWorksDW2008R2</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>bdd69cd2-480d-4fed-937b-75f576b1efb2</rd:DataSourceID>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>7dab9457-e4bb-4ee8-b54e-d785548265f5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
