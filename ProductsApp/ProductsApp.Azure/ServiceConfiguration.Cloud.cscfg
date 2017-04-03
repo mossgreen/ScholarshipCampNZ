@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="ProductsApp.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="ProductsApp">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=easydemoproductapp;AccountKey=$(_easydemoproductapp.key_)" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="998fdb86-e2ae-4945-a99a-32537b132845" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
