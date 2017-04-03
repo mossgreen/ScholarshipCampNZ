@@ -19,14 +19,25 @@ namespace ContosoUniversity.Controllers
             _context = context;    
         }
 
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
             //LINQ to Entities to specify the column to sort by
             //creates an IQueryable variable before the switch statement
             var students = from s in _context.Students
                            select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students
+                    .Where(s => 
+                       s.LastName.Contains(searchString) ||
+                       s.FirstMidName.Contains(searchString));
+            }
+
             switch (sortOrder)
             {
                 case "name_desc":
