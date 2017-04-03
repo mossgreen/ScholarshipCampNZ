@@ -16,13 +16,29 @@ namespace ContosoUniversity.Controllers
 
         public StudentsController(SchoolContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(
+                                                string sortOrder,
+                                                string currentFilter,
+                                                string searchString,
+                                                int? page)
+
         {
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             ViewData["CurrentFilter"] = searchString;
 
             //LINQ to Entities to specify the column to sort by
@@ -33,7 +49,7 @@ namespace ContosoUniversity.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students
-                    .Where(s => 
+                    .Where(s =>
                        s.LastName.Contains(searchString) ||
                        s.FirstMidName.Contains(searchString));
             }
@@ -53,7 +69,18 @@ namespace ContosoUniversity.Controllers
                     students = students.OrderBy(s => s.LastName);
                     break;
             }
-            return View(await students.AsNoTracking().ToListAsync());
+
+            /*PaginatedList.CreateAsync method converts the student query to a single page of students 
+             * in a collection type that supports paging. 
+             * That single page of students is then passed to the view.
+             * PaginatedList.CreateAsync method takes a page number. 
+             * The two question marks represent the null-coalescing operator. 
+             * The null-coalescing operator defines a default value for a nullable type; 
+             * the expression (page ?? 1) means return the value of page if it has a value, 
+             * or return 1 if page is null.
+             */
+            int pageSize = 3;
+            return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Students/Details/5
