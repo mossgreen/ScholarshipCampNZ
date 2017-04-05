@@ -19,8 +19,7 @@ namespace ContosoUniversity.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(
-                                                string sortOrder,
+        public async Task<IActionResult> Index( string sortOrder,
                                                 string currentFilter,
                                                 string searchString,
                                                 int? page)
