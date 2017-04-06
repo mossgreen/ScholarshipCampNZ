@@ -27,6 +27,17 @@ namespace ContosoUniversity.Models
 
         public int? InstructorID { get; set; }
 
+        /*The Timestamp attribute specifies that this column will be included in the Where clause 
+         * of Update and Delete commands sent to the database. 
+         * 
+         * The attribute is called Timestamp because previous versions of SQL Server 
+         * used a SQL timestamp data type before the SQL rowversion replaced it. 
+         * The .NET type for rowversion is a byte array.
+         with fluent api:
+         modelBuilder.Entity<Department>().Property(p => p.RowVersion).IsConcurrencyToken();   */
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         public Instructor Administrator { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
