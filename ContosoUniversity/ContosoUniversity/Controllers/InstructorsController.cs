@@ -117,13 +117,35 @@ namespace ContosoUniversity.Controllers
 
             var instructor = await _context.Instructors
                 .Include(i => i.OfficeAssignment)
+                .Include(i => i.CourseAssignments)
+                    .ThenInclude(i => i.Course)
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (instructor == null)
             {
                 return NotFound();
             }
+            PopulateAssignedCourseData(instructor);
             return View(instructor);
+        }
+
+        private void PopulateAssignedCourseData(Instructor instructor)
+        {
+            var allCourses = _context.Courses;
+            var instructorCourses = new HashSet<int>(instructor
+                .CourseAssignments
+                .Select(c => c.Course.CourseID));
+            var viewModel = new List<AssignedCourseData>();
+            foreach (var course in allCourses)
+            {
+                viewModel.Add(new AssignedCourseData
+                {
+                    CourseID = course.CourseID,
+                    Title = course.Title,
+                    Assigned = instructorCourses.Contains(course.CourseID)
+                });
+            }
+            ViewData["Courses"] = viewModel;
         }
 
 
@@ -131,7 +153,7 @@ namespace ContosoUniversity.Controllers
          * the signature is now the same as the HttpGet Edit method*/
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<IActionResult> Edit(int? id, string[] selectedCourses)
         {
             if (id == null)
             {
@@ -140,6 +162,8 @@ namespace ContosoUniversity.Controllers
 
             var instructorToUpdate = await _context.Instructors
                 .Include(i => i.OfficeAssignment) //eager loading
+                .Include(i => i.CourseAssignments)
+                    .ThenInclude(i => i.Course)
                 .SingleOrDefaultAsync(s => s.ID == id);
 
             //The TryUpdateModel overload enables you to 
@@ -153,6 +177,9 @@ namespace ContosoUniversity.Controllers
                 {
                     instructorToUpdate.OfficeAssignment = null;
                 }
+
+                UpdateInstructorCourses(selectedCourses, instructorToUpdate);
+
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -167,6 +194,56 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction("Index");
             }
             return View(instructorToUpdate);
+        }
+
+        private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
+        {
+            /*If no check boxes were selected, the code in UpdateInstructorCourses initializes 
+             * the CourseAssignments navigation property with an empty collection and returns*/
+            if (selectedCourses == null)
+            {
+                instructorToUpdate.CourseAssignments = new List<CourseAssignment>();
+                return;
+            }
+
+            /*The code then loops through all courses in the database and checks each course 
+             * against the ones currently assigned to the instructor versus the ones 
+             * that were selected in the view. To facilitate efficient lookups, 
+             * the latter two collections are stored in HashSet objects.*/
+            var selectedCoursesHS = new HashSet<string>(selectedCourses);
+            var instructorCourses = new HashSet<int>
+                (instructorToUpdate.CourseAssignments.Select(c => c.Course.CourseID));
+            foreach (var course in _context.Courses)
+            {
+                /*If the check box for a course was selected 
+                 * but the course isn't in the Instructor.CourseAssignments navigation property,
+                 * the course is added to the collection in the navigation property*/
+                if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+                {
+                    if (!instructorCourses.Contains(course.CourseID))
+                    {
+                        instructorToUpdate
+                            .CourseAssignments
+                            .Add(new CourseAssignment {
+                                InstructorID = instructorToUpdate.ID,
+                                CourseID = course.CourseID });
+                    }
+                }
+                else
+                {
+                    /*If the check box for a course wasn't selected, 
+                     * but the course is in the Instructor.CourseAssignments navigation property, 
+                     * the course is removed from the navigation property.*/
+
+                    if (instructorCourses.Contains(course.CourseID))
+                    {
+                        CourseAssignment courseToRemove = instructorToUpdate
+                            .CourseAssignments
+                            .SingleOrDefault(i => i.CourseID == course.CourseID);
+                        _context.Remove(courseToRemove);
+                    }
+                }
+            }
         }
 
         // GET: Instructors/Delete/5
