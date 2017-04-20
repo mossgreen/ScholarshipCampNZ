@@ -12,10 +12,8 @@
         Year: ko.observable()
     }
 
-
     var booksUri = '/api/books/';
     var authorsUri = '/api/authors/';
-
 
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -36,17 +34,18 @@
         });
     }
 
-    function getAuthors() {
-        ajaxHelper(authorsUri, 'GET').done(function (data) {
-            self.authors(data);
-        });
-    }
-    
     self.getBookDetail = function (item) {
         ajaxHelper(booksUri + item.Id, 'GET').done(function (data) {
             self.detail(data);
         });
     }
+
+    function getAuthors() {
+        ajaxHelper(authorsUri, 'GET').done(function (data) {
+            self.authors(data);
+        });
+    }
+
 
     self.addBook = function (formElement) {
         var book = {
@@ -62,10 +61,9 @@
         });
     }
 
-    getAuthors();
-
     // Fetch the initial data.
     getAllBooks();
+    getAuthors();
 };
 
 ko.applyBindings(new ViewModel());
